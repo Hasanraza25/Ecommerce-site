@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from 'react';
 
 const categories = [
@@ -21,17 +21,17 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="bg-gray-800 text-white w-64 min-h-screen p-5">
+    <div className="container ml-40 me-10 w-[24rem] min-h-screen p-5 border-r-2">
       <ul>
         {categories.map((category, index) => (
-          <li key={index} className="my-4">
+          <li key={index} className=" ">
             <button
               onClick={() => toggleDropdown(index)}
-              className="flex items-center w-full text-lg font-medium text-left hover:bg-gray-700 p-2 rounded text-black"
+              className="flex items-center w-full text-lg p-2 font-medium text-left rounded text-black hover:bg-gray-100"
             >
               <span className="text-black">{category}</span>
               <svg
-                className={`ml-2 w-4 h-4 transform transition-transform ${openCategory === index ? 'rotate-0' : '-rotate-90'} text-black`}
+                className={`ml-auto w-5 h-5 transform transition-transform font-bold ${openCategory === index ? 'rotate-0' : '-rotate-90'} text-black`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -47,12 +47,11 @@ const Sidebar = () => {
             </button>
 
             {openCategory === index && (
-              <ul className="mt-2 pl-4">
-                {/* Add subcategories here */}
-                <li className="my-2 text-gray-300 hover:bg-gray-700 p-2 rounded">
+              <ul className="mt-1 pl-4">
+                <li className="my-1 text-black p-2 rounded hover:bg-gray-100">
                   <a href="#">Subcategory 1</a>
                 </li>
-                <li className="my-2 text-gray-300 hover:bg-gray-700 p-2 rounded">
+                <li className="my-1 text-black p-2 rounded hover:bg-gray-100">
                   <a href="#">Subcategory 2</a>
                 </li>
               </ul>
