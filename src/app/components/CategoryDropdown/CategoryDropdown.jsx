@@ -21,7 +21,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="container ml-40 me-10 w-[24rem] min-h-screen p-5 border-r-2">
+    <div className="container ml-40 me-10 w-[24rem] min-h-full p-5 border-r-2">
       <ul>
         {categories.map((category, index) => (
           <li key={index} className=" ">

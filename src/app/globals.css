@@ -12,10 +12,5 @@
 body {
   width: 100%;
   height: 100%;
-  font-family: 'Montserrat', sans-serif; /* Ensure fallback font is set */
-}
-
-/* Apply Montserrat to the .mytext class */
-.mytext {
-  font-family: 'Montserrat', sans-serif; /* Fallback font */
+  font-family: var(--font-poppins), monospace;
 }
