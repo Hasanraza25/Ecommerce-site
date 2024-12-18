@@ -7,8 +7,8 @@ const CategorySlider = ({ products }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [visibleCards, setVisibleCards] = useState(3);
   const [isHovered, setIsHovered] = useState(null);
-  
-  const cardWidth = 450;
+
+  const cardWidth = 250; // Adjust this to match your card's actual width
   const totalCards = products.length;
 
   useEffect(() => {
@@ -16,9 +16,9 @@ const CategorySlider = ({ products }) => {
       if (window.innerWidth < 640) {
         setVisibleCards(1);
       } else if (window.innerWidth < 1024) {
-        setVisibleCards(6);
+        setVisibleCards(3);
       } else {
-        setVisibleCards(6);
+        setVisibleCards(5);
       }
     };
 
@@ -27,12 +27,11 @@ const CategorySlider = ({ products }) => {
     return () => window.removeEventListener("resize", updateVisibleCards);
   }, []);
 
-  const containerWidth = visibleCards * cardWidth;
-  const totalScrollableWidth = totalCards * cardWidth;
-  const maxScrollPosition = Math.max(totalScrollableWidth - containerWidth, 0);
+  const maxScrollIndex = Math.max(totalCards - visibleCards, 0);
+  const currentIndex = scrollPosition / cardWidth;
 
-  const isLeftDisabled = scrollPosition === 0;
-  const isRightDisabled = scrollPosition >= maxScrollPosition;
+  const isLeftDisabled = currentIndex <= 0;
+  const isRightDisabled = currentIndex >= maxScrollIndex;
 
   const scrollLeft = () => {
     if (!isLeftDisabled) {
@@ -43,7 +42,7 @@ const CategorySlider = ({ products }) => {
   const scrollRight = () => {
     if (!isRightDisabled) {
       setScrollPosition((prev) =>
-        Math.min(prev + cardWidth, maxScrollPosition)
+        Math.min(prev + cardWidth, maxScrollIndex * cardWidth)
       );
     }
   };
@@ -80,33 +79,24 @@ const CategorySlider = ({ products }) => {
       <div className="w-full mt-12 overflow-hidden relative">
         {/* Cards Container */}
         <div
-          className="flex transition-transform duration-300 "
+          className="flex transition-transform duration-300"
           style={{ transform: `translateX(-${scrollPosition}px)` }}
         >
-          {products.map((product, index) => {
-            
-
-            return (
-              <div
-                className="flex flex-col border hover:border-none hover:bg-[#db4444] hover:text-white rounded-md items-center mx-5 px-16 py-8 cursor-pointer transition-all duration-300 w-56"
-                key={index}
-                onMouseEnter={() => setIsHovered(index)}
-                onMouseLeave={() => setIsHovered(null)}
-              >
-                <img
-                  src={
-                    isHovered === index
-                      ? product.hoverImage 
-                      : product.image
-                  }
-                  alt={product.name}
-                  className="mb-5 transition-transform duration-300 transform hover:scale-105"
-                  
-                />
-                <h3 className="text-center hover:text-white">{product.name}</h3>
-              </div>
-            );
-          })}
+          {products.map((product, index) => (
+            <div
+              className="flex flex-col border hover:border-none hover:bg-[#db4444] hover:text-white rounded-md items-center mx-5 px-16 py-8 cursor-pointer transition-all duration-300 w-56"
+              key={index}
+              onMouseEnter={() => setIsHovered(index)}
+              onMouseLeave={() => setIsHovered(null)}
+            >
+              <img
+                src={isHovered === index ? product.hoverImage : product.image}
+                alt={product.name}
+                className="mb-5 transition-transform duration-300 transform hover:scale-105"
+              />
+              <h3 className="text-center hover:text-white">{product.name}</h3>
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -30,7 +30,7 @@ const AllProductSlider = ({ products }) => {
   return (
     <div className="relative flex flex-col h-full mb-20">
       {/* Arrow Buttons Centered Above Slider */}
-      <div className="absolute md:-top-10 right-0 flex justify-end w-full mb-5">
+      <div className=" md:-top-10 right-0 flex justify-end w-full mb-3">
         <button
           onClick={scrollLeft}
           disabled={currentPage === 0} // Disable when at the first page
@@ -59,7 +59,6 @@ const AllProductSlider = ({ products }) => {
           {/* Cards Container */}
           <div
             className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-6 mx-auto justify-center items-center"
-            style={{ width: `${totalPages * 100}%` }}
           >
             {displayedProducts.map((product, index) => (
               <ProductCard key={index} product={product} />
