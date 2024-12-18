@@ -84,10 +84,12 @@ const BestSellProducts = () => {
 
   return (
     <>
-      <div className="container mx-auto flex flex-col px-4 sm:px-6 md:px-8 overflow-hidden">
-        <div className="heading container mx-auto flex items-center">
-          <span className="bg-[#db4444] w-[30px] h-[55px] border rounded-[5px]"></span>
-          <h4 className="text-[#db4444] font-bold mx-5 text-lg">This Month</h4>
+      <div className="mx-auto flex flex-col px-10 lg:px-40 overflow-hidden">
+      <div className="heading flex items-center mt-16 md:mt-24">
+          <span className="bg-[#db4444] w-5 h-10 md:w-[30px] md:h-[55px] border rounded-[5px]"></span>
+          <h4 className="text-[#db4444] font-bold mx-3 md:mx-5 text-md md:text-lg">
+            This Month
+          </h4>
         </div>
         <div className="flex mt-10 items-center font-bold justify-between flex-col md:flex-row">
           <h1 className="text-4xl font-semibold">Best Selling Products</h1>

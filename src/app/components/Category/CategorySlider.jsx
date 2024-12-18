@@ -6,6 +6,8 @@ import React, { useState, useEffect } from "react";
 const CategorySlider = ({ products }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [visibleCards, setVisibleCards] = useState(3);
+  const [isHovered, setIsHovered] = useState(null);
+  
   const cardWidth = 250;
   const totalCards = products.length;
 
@@ -82,23 +84,24 @@ const CategorySlider = ({ products }) => {
           style={{ transform: `translateX(-${scrollPosition}px)` }}
         >
           {products.map((product, index) => {
-            const [isHovered, setIsHovered] = useState(false); // Track hover state
+            
 
             return (
               <div
                 className="flex flex-col border hover:border-none hover:bg-[#db4444] hover:text-white rounded-md items-center mx-5 px-16 py-8 cursor-pointer transition-all duration-300 w-56"
                 key={index}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                onMouseEnter={() => setIsHovered(index)}
+                onMouseLeave={() => setIsHovered(null)}
               >
                 <img
                   src={
-                    isHovered
+                    isHovered === index
                       ? product.hoverImage 
                       : product.image
                   }
                   alt={product.name}
                   className="mb-5 transition-transform duration-300 transform hover:scale-105"
+                  
                 />
                 <h3 className="text-center hover:text-white">{product.name}</h3>
               </div>

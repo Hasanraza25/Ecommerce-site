@@ -21,13 +21,13 @@ const CategoryDropdown = () => {
   };
 
   return (
-    <div className="w-full lg:w-[24rem] min-h-full p-5 bg-white mr-16 border-r-2">
+    <div className="w-72 min-h-full p-5 bg-white mr-20 border-r-2">
       <ul>
         {categories.map((category, index) => (
           <li key={index} className="mb-2">
             <button
               onClick={() => toggleDropdown(index)}
-              className="flex items-center w-full text-lg p-2 font-medium text-left rounded text-black hover:bg-gray-100"
+              className="flex items-center w-full text-lg p-2  font-medium text-left rounded text-black hover:bg-gray-100"
             >
               <span>{category}</span>
               <svg

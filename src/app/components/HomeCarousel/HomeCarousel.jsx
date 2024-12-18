@@ -52,13 +52,13 @@ const HomeCarousel = () => {
 
   return (
     <div
-      className="relative lg:w-[65%] w-[90%] h-full md:h-[350px] lg:h-[400px] mt-10 pb-10 overflow-hidden lg:mx-0 mx-auto bg-black"
+      className="relative w-full h-auto flex flex-col justify-center mt-10 pb-10 overflow-hidden lg:mx-0 mx-auto bg-black "
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
       {/* Slides container */}
       <div
-        className="flex transition-transform duration-500 ease-in-out"
+        className="flex transition-transform duration-500 ease-in-out bg-black"
         style={{
           transform: `translateX(-${activeSlide * 100}%)`,
         }}
@@ -69,19 +69,22 @@ const HomeCarousel = () => {
             className="flex-none w-full h-full flex flex-col md:flex-row items-center justify-between bg-black pt-10"
           >
             {/* Text Section */}
-            <div className="text-white px-6 sm:px-8 md:px-12 lg:px-20 w-full md:flex-1 text-center md:text-left mb-6 md:mb-0">
+            <div className="text-white px-6 sm:px-8 md:px-12 w-full md:flex-1 text-center md:text-left mb-6 md:mb-0">
+              <div className="flex items-center space-x-4 mb-5">
+                <img src="images/apple-icon.png" alt="" />
               <h3 className="text-lg md:text-xl lg:text-2xl">
                 iPhone 14 Series
               </h3>
-              <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-6xl mt-2 sm:mt-4 font-semibold leading-tighter tracking-wider">
+              </div>
+              <h1 className="text-3xl slide-content lg:text-6xl lg:leading-snug mt-2 sm:mt-4 font-semibold tracking-wider">
                 {slide.content}
               </h1>
-              <button className="text-lg mx-auto md:mx-0 md:text-xl mt-4 flex items-center justify-center md:justify-start">
-                <span className="border-b-2 border-white">Shop Now</span>
+              <button className="text-lg mx-auto md:mx-0 md:text-xl mt-4 flex items-center justify-center md:justify-start space-x-4">
+                <span className="border-b-2 border-white pb-2">Shop Now</span>
                 <img
                   src="/images/arrow-icon.svg"
                   alt="Arrow"
-                  className="ml-2 w-4 md:w-6"
+                  className="ml-2 mb-2 w-4 md:w-6"
                 />
               </button>
             </div>
@@ -91,7 +94,7 @@ const HomeCarousel = () => {
               <img
                 src={slide.image}
                 alt="Slide"
-                className="object-contain w-full h-[200px] md:h-[300px] lg:h-[400px]"
+                className="object-contain w-full h-full"
               />
             </div>
           </div>

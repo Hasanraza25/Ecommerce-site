@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import NavLink from "./NavLink";
 import Link from "next/link";
 
 const Header = () => {
@@ -23,8 +22,8 @@ const Header = () => {
   ];
 
   return (
-    <header className="p-4 pt-8 border-b-2 mytext ">
-      <div className="container flex justify-between items-center max-w-[1500px] mx-auto">
+    <header className="pb-4 pt-8 px-24 border-b-2 mytext ">
+      <div className="container flex justify-between items-center mx-auto">
         <div className="text-white text-lg flex items-center lg:block">
           <Image
             src="/images/logo.png"

@@ -13,7 +13,7 @@ export default function Home() {
       <Sales />
       <Category />
       <BestSellProducts />
-      {/* <Music /> */}
+      <Music />
       {/* <AllProducts /> */}
     </>
   );

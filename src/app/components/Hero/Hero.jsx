@@ -11,7 +11,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="max-w-[1550px] mx-auto relative">
+    <div className="px-0 lg:px-20 xl:px-32 hero-content relative">
       {/* Header Categories Button for Mobile/Tablet */}
       <div className="lg:hidden px-8 mt-4">
         <button
@@ -49,7 +49,7 @@ const Hero = () => {
 
       {/* Desktop View */}
       <div className="flex">
-        <div className="hidden lg:block">
+        <div className="hidden lg:block ">
           <CategoryDropdown />
         </div>
         <HomeCarousel />

@@ -6,19 +6,18 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const ProductSlider = ({ products }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [visibleCards, setVisibleCards] = useState(3); 
-  const cardWidth = 350; 
+  const [visibleCards, setVisibleCards] = useState(3);
+  const cardWidth = 350;
   const totalCards = products.length;
 
-  
   useEffect(() => {
     const updateVisibleCards = () => {
       if (window.innerWidth < 640) {
-        setVisibleCards(1); 
+        setVisibleCards(1);
       } else if (window.innerWidth < 1024) {
-        setVisibleCards(2); 
+        setVisibleCards(2);
       } else {
-        setVisibleCards(3); 
+        setVisibleCards(3);
       }
     };
 
@@ -27,15 +26,13 @@ const ProductSlider = ({ products }) => {
     return () => window.removeEventListener("resize", updateVisibleCards);
   }, []);
 
-  
-  const containerWidth = visibleCards * cardWidth; 
-  const totalScrollableWidth = totalCards * cardWidth; 
-  const maxScrollPosition = Math.max(totalScrollableWidth - containerWidth, 0); 
+  const containerWidth = visibleCards * cardWidth;
+  const totalScrollableWidth = totalCards * cardWidth;
+  const maxScrollPosition = Math.max(totalScrollableWidth - containerWidth, 0);
 
   const isLeftDisabled = scrollPosition === 0;
   const isRightDisabled = scrollPosition >= maxScrollPosition;
 
-  
   const scrollLeft = () => {
     if (!isLeftDisabled) {
       setScrollPosition((prev) => Math.max(prev - cardWidth, 0));
@@ -86,7 +83,9 @@ const ProductSlider = ({ products }) => {
           style={{ transform: `translateX(-${scrollPosition}px)` }}
         >
           {products.map((product, index) => (
-            <ProductCard key={index} product={product} />
+            <div key={index} className="" style={{ minWidth: '22.5rem' }}>
+              <ProductCard key={index} product={product} />
+            </div>
           ))}
         </div>
       </div>
