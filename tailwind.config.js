@@ -56,7 +56,7 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       screens: {
-        sm: { max: "768px" },
+        sm: { max: "660px" },
       },
     },
   },
