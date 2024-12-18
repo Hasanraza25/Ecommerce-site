@@ -19,9 +19,11 @@ const ProductCard = ({ product }) => {
   return (
     <div className="flex-shrink-0 w-[20rem] h-full rounded-lg relative mx-4 border-none">
       <div className="bg-[#f5f5f5] w-full p-4 h-60 flex items-center">
-        <span className="absolute top-2 left-2 bg-red-500 text-white text-sm px-3 py-1 rounded">
-          -{product.discount}%
-        </span>
+        {product.discount && (
+          <span className="absolute top-2 left-2 bg-red-500 text-white text-sm px-3 py-1 rounded">
+            -{product.discount}%
+          </span>
+        )}
 
         {/* Product Image */}
         <img
@@ -64,9 +66,11 @@ const ProductCard = ({ product }) => {
           <span className="text-red-500 text-lg font-bold">
             ${product.discountedPrice}
           </span>
-          <span className="text-gray-500 text-lg line-through">
-            ${product.originalPrice}
-          </span>
+          {product.originalPrice && (
+            <span className="text-gray-500 text-lg line-through">
+              ${product.originalPrice}
+            </span>
+          )}
         </div>
 
         {/* Ratings */}
