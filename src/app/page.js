@@ -9,13 +9,12 @@ import AllProducts from "./components/Products/AllProducts";
 export default function Home() {
   return (
     <>
-      <Header />
-      {/* <Hero />
+      <Hero />
       <Sales />
       <Category />
       <BestSellProducts />
-      <Music />
-      <AllProducts /> */}
+      {/* <Music /> */}
+      {/* <AllProducts /> */}
     </>
   );
 }

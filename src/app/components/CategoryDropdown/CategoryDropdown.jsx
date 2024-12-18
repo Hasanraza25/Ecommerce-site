@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState } from "react";
 
 const categories = [
   "Woman's Fashion",
@@ -13,7 +13,7 @@ const categories = [
   "Health & Beauty",
 ];
 
-const Sidebar = () => {
+const CategoryDropdown = () => {
   const [openCategory, setOpenCategory] = useState(null);
 
   const toggleDropdown = (index) => {
@@ -21,15 +21,15 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="container ml-40 me-10 w-[24rem] min-h-full p-5 border-r-2">
+    <div className="w-full lg:w-[24rem] min-h-full p-5 bg-white mr-16 border-r-2">
       <ul>
         {categories.map((category, index) => (
-          <li key={index} className=" ">
+          <li key={index} className="mb-2">
             <button
               onClick={() => toggleDropdown(index)}
               className="flex items-center w-full text-lg p-2 font-medium text-left rounded text-black hover:bg-gray-100"
             >
-              <span className="text-black">{category}</span>
+              <span>{category}</span>
               <svg
                 className={`ml-auto w-5 h-5 transform transition-transform font-bold ${openCategory === index ? 'rotate-0' : '-rotate-90'} text-black`}
                 fill="none"
@@ -45,13 +45,12 @@ const Sidebar = () => {
                 ></path>
               </svg>
             </button>
-
             {openCategory === index && (
               <ul className="mt-1 pl-4">
-                <li className="my-1 text-black p-2 rounded hover:bg-gray-100">
+                <li className="my-1 p-2 rounded hover:bg-gray-100">
                   <a href="#">Subcategory 1</a>
                 </li>
-                <li className="my-1 text-black p-2 rounded hover:bg-gray-100">
+                <li className="my-1 p-2 rounded hover:bg-gray-100">
                   <a href="#">Subcategory 2</a>
                 </li>
               </ul>
@@ -63,4 +62,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default CategoryDropdown;

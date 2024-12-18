@@ -1,36 +1,76 @@
 "use client";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const CategorySlider = ({ products }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [visibleCards, setVisibleCards] = useState(3);
+  const cardWidth = 250;
+  const totalCards = products.length;
+
+  useEffect(() => {
+    const updateVisibleCards = () => {
+      if (window.innerWidth < 640) {
+        setVisibleCards(1);
+      } else if (window.innerWidth < 1024) {
+        setVisibleCards(6);
+      } else {
+        setVisibleCards(6);
+      }
+    };
+
+    updateVisibleCards();
+    window.addEventListener("resize", updateVisibleCards);
+    return () => window.removeEventListener("resize", updateVisibleCards);
+  }, []);
+
+  const containerWidth = visibleCards * cardWidth;
+  const totalScrollableWidth = totalCards * cardWidth;
+  const maxScrollPosition = Math.max(totalScrollableWidth - containerWidth, 0);
+
+  const isLeftDisabled = scrollPosition === 0;
+  const isRightDisabled = scrollPosition >= maxScrollPosition;
 
   const scrollLeft = () => {
-    setScrollPosition((prev) => Math.max(prev - 200, 0));
+    if (!isLeftDisabled) {
+      setScrollPosition((prev) => Math.max(prev - cardWidth, 0));
+    }
   };
 
   const scrollRight = () => {
-    setScrollPosition((prev) =>
-      Math.min(prev + 200, (products.length - 3) * 200)
-    );
+    if (!isRightDisabled) {
+      setScrollPosition((prev) =>
+        Math.min(prev + cardWidth, maxScrollPosition)
+      );
+    }
   };
 
   return (
-    <div className="relative flex flex-col  h-full mb-20">
+    <div className="relative flex flex-col h-full mb-20 mt-20 lg:mt-0">
       {/* Arrow Buttons Centered Above Slider */}
-      <div className="absolute -top-10 right-0 flex justify-end w-full">
+      <div className="absolute md:-top-20 -top-10 right-0 flex justify-end w-full">
         <button
           onClick={scrollLeft}
-          className="bg-gray-200 w-11 h-11 mx-2 rounded-full shadow hover:bg-gray-300"
+          disabled={isLeftDisabled}
+          className={`w-11 h-11 mx-2 rounded-full shadow ${
+            isLeftDisabled
+              ? "bg-gray-300 cursor-not-allowed"
+              : "bg-gray-200 hover:bg-gray-300"
+          }`}
         >
           <FontAwesomeIcon icon={faArrowLeft} className="text-2xl" />
         </button>
         <button
           onClick={scrollRight}
-          className="bg-gray-200 w-11 h-11 rounded-full shadow hover:bg-gray-300"
+          disabled={isRightDisabled}
+          className={`w-11 h-11 rounded-full shadow ${
+            isRightDisabled
+              ? "bg-gray-300 cursor-not-allowed"
+              : "bg-gray-200 hover:bg-gray-300"
+          }`}
         >
-          <FontAwesomeIcon icon={faArrowRight} className="text-xl" />
+          <FontAwesomeIcon icon={faArrowRight} className="text-2xl" />
         </button>
       </div>
 
@@ -41,12 +81,29 @@ const CategorySlider = ({ products }) => {
           className="flex transition-transform duration-300 "
           style={{ transform: `translateX(-${scrollPosition}px)` }}
         >
-          {products.map((product, index) => (
-            <div className="flex flex-col border items-center mx-5 px-16 py-8" key={index}>
-              <img src={product.image} alt="" className="mb-5" />
-              <h3>{product.name}</h3>
-            </div>
-          ))}
+          {products.map((product, index) => {
+            const [isHovered, setIsHovered] = useState(false); // Track hover state
+
+            return (
+              <div
+                className="flex flex-col border hover:border-none hover:bg-[#db4444] hover:text-white rounded-md items-center mx-5 px-16 py-8 cursor-pointer transition-all duration-300 w-56"
+                key={index}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
+                <img
+                  src={
+                    isHovered
+                      ? product.hoverImage 
+                      : product.image
+                  }
+                  alt={product.name}
+                  className="mb-5 transition-transform duration-300 transform hover:scale-105"
+                />
+                <h3 className="text-center hover:text-white">{product.name}</h3>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
