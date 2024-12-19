@@ -8,7 +8,10 @@ const ProductSlider = ({ products }) => {
   const [scrollPosition, setScrollPosition] = useState(0); // Current scroll position
   const [visibleCards, setVisibleCards] = useState(4); // Default to 4 cards for desktop
   const cardWidth = 350; // Width of each card in pixels
-  const [loopedProducts, setLoopedProducts] = useState([...products, ...products.slice(0, 4)]); // Initialize with extra first products
+  const [loopedProducts, setLoopedProducts] = useState([
+    ...products,
+    ...products,
+  ]); // Initialize with extra first products
 
   useEffect(() => {
     const updateVisibleCards = () => {
@@ -29,9 +32,12 @@ const ProductSlider = ({ products }) => {
   const handleScrollRight = () => {
     setScrollPosition((prev) => prev + cardWidth);
 
-    // Append more products dynamically when nearing the end
-    if (scrollPosition + visibleCards * cardWidth >= (loopedProducts.length - visibleCards) * cardWidth) {
-      setLoopedProducts((prevProducts) => [...prevProducts, ...products.slice(0, visibleCards)]);
+    // Append all products dynamically when nearing the end
+    if (
+      scrollPosition + visibleCards * cardWidth >=
+      (loopedProducts.length - visibleCards) * cardWidth
+    ) {
+      setLoopedProducts((prevProducts) => [...prevProducts, ...products]);
     }
   };
 
@@ -39,13 +45,12 @@ const ProductSlider = ({ products }) => {
     // Decrease scroll position
     setScrollPosition((prev) => prev - cardWidth);
 
-    // Prepend products dynamically when at the start
+    // Prepend all products dynamically when at the start
     if (scrollPosition <= 0) {
-      setLoopedProducts((prevProducts) => [...products.slice(-visibleCards), ...prevProducts]);
-      setScrollPosition(visibleCards * cardWidth); // Adjust scroll position to maintain continuity
+      setLoopedProducts((prevProducts) => [...products, ...prevProducts]);
+      setScrollPosition(products.length * cardWidth); // Adjust scroll position to maintain continuity
     }
   };
-
   return (
     <div className="relative flex flex-col h-full mb-20 mt-20 lg:mt-0">
       {/* Arrow Buttons */}

@@ -13,7 +13,7 @@ const Hero = () => {
   return (
     <div className="container px-0 lg:px-5 hero-content relative mx-auto">
       {/* Header Categories Button for Mobile/Tablet */}
-      <div className="lg:hidden px-8 mt-4">
+      <div className="lg:hidden px-4 mt-4">
         <button
           onClick={toggleMobileDropdown}
           className="w-full bg-gray-100 text-lg font-semibold text-black py-2 px-4 rounded flex items-center justify-between"
@@ -39,9 +39,9 @@ const Hero = () => {
       </div>
 
       {/* Mobile Dropdown */}
-      <div className="flex items-center justify-center px-4 mx-auto ">
+      <div className="flex items-center justify-center px-2 mx-auto ">
         {isMobileDropdownOpen && (
-          <div className="lg:hidden absolute top-12 w-[84%]  bg-white shadow-lg z-30 border-t border-gray-200 mx-auto">
+          <div className="lg:hidden absolute top-12 w-[90%] px-2 bg-white shadow-lg z-30 border-none mx-auto">
             <CategoryDropdown />
           </div>
         )}
