@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
   const [isHeartClicked, setIsHeartClicked] = useState(false);
   const [isEyeClicked, setIsEyeClicked] = useState(false);
   return (
-    <div className="flex-shrink-0 max-w-[20rem] h-full rounded-lg relative mx-4 border-none">
+    <div className="flex-shrink-0 max-w-[20rem] h-full rounded-lg relative mr-4 border-none">
       <div className="bg-[#f5f5f5] w-full p-4 h-60 flex items-center">
         {product.discount && (
           <span className="absolute top-2 left-2 bg-red-500 text-white text-sm px-3 py-1 rounded">

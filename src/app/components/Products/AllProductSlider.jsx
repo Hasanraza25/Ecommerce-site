@@ -30,7 +30,7 @@ const AllProductSlider = ({ products }) => {
   return (
     <div className="relative flex flex-col h-full mb-20">
       {/* Arrow Buttons Centered Above Slider */}
-      <div className="absolute -top-10 right-0 flex justify-end w-full">
+      <div className="absolute md:-top-10 right-0 flex justify-end w-full mb-5">
         <button
           onClick={scrollLeft}
           disabled={currentPage === 0} // Disable when at the first page
@@ -55,13 +55,11 @@ const AllProductSlider = ({ products }) => {
 
       {/* Slider Container */}
       <div className="w-full mt-12 overflow-hidden relative">
-        <div
-          className="flex transition-transform duration-500 ease-in-out"
-        >
+        <div className="flex transition-transform duration-500 ease-in-out pl-4 items-center mx-auto">
           {/* Cards Container */}
           <div
-            className="grid grid-cols-4 gap-6"
-            style={{ width: `${totalPages * 100}%` }} // Ensure the width covers all pages
+            className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-6 mx-auto justify-center items-center"
+            style={{ width: `${totalPages * 100}%` }}
           >
             {displayedProducts.map((product, index) => (
               <ProductCard key={index} product={product} />

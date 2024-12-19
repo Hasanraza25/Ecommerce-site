@@ -14,7 +14,7 @@ export default function Home() {
       <Category />
       <BestSellProducts />
       <Music />
-      {/* <AllProducts /> */}
+      <AllProducts />
     </>
   );
 }

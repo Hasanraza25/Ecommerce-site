@@ -11,7 +11,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="px-0 lg:px-20 xl:px-32 hero-content relative">
+    <div className="container px-0 lg:px-5 hero-content relative mx-auto">
       {/* Header Categories Button for Mobile/Tablet */}
       <div className="lg:hidden px-8 mt-4">
         <button
@@ -39,9 +39,9 @@ const Hero = () => {
       </div>
 
       {/* Mobile Dropdown */}
-      <div className="px-4">
+      <div className="flex items-center justify-center px-4 mx-auto ">
         {isMobileDropdownOpen && (
-          <div className="lg:hidden absolute top-12 w-[95%]  bg-white shadow-lg z-30 border-t border-gray-200">
+          <div className="lg:hidden absolute top-12 w-[84%]  bg-white shadow-lg z-30 border-t border-gray-200 mx-auto">
             <CategoryDropdown />
           </div>
         )}

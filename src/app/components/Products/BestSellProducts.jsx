@@ -84,7 +84,7 @@ const BestSellProducts = () => {
 
   return (
     <>
-      <div className="mx-auto flex flex-col px-10 lg:px-40 overflow-hidden">
+      <div className="container mx-auto flex flex-col px-2 overflow-hidden">
       <div className="heading flex items-center mt-16 md:mt-24">
           <span className="bg-[#db4444] w-5 h-10 md:w-[30px] md:h-[55px] border rounded-[5px]"></span>
           <h4 className="text-[#db4444] font-bold mx-3 md:mx-5 text-md md:text-lg">
@@ -115,7 +115,7 @@ const BestSellProducts = () => {
             {products.map((product, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 md:w-[48%] lg:w-[22%] mx-auto"
+                className="flex-shrink-0  mx-auto w-[20rem]"
               >
                 <ProductCard product={product} />
               </div>

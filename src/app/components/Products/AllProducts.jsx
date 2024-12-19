@@ -59,24 +59,6 @@ const AllProducts = () => {
     },
     {
       image: "/images/product-game.svg",
-      name: "Monitor",
-      discountedPrice: 370,
-      originalPrice: 400,
-      discount: 30,
-      rating: 5,
-      buyers: 30,
-    },
-    {
-      image: "/images/chair.svg",
-      name: "Chair",
-      discountedPrice: 375,
-      originalPrice: 500,
-      discount: 25,
-      rating: 4.5,
-      buyers: 114,
-    },
-    {
-      image: "/images/product-game.svg",
       name: "Gamepad",
       discountedPrice: 120,
       originalPrice: 160,
@@ -147,17 +129,17 @@ const AllProducts = () => {
       rating: 4.5,
       buyers: 114,
     },
-    
   ];
   return (
     <>
-      <div className="container mx-auto flex flex-col">
-        <div className="heading container mx-auto flex items-center mt-32">
-          <span className="bg-[#db4444] w-[30px] h-[55px] border rounded-[5px]"></span>
-          <h4 className="text-[#db4444] font-bold mx-5 text-lg">
+      <div className="container mx-auto flex flex-col px-2 overflow-hidden">
+      <div className="heading flex items-center mt-16 md:mt-24">
+          <span className="bg-[#db4444] w-5 h-10 md:w-[30px] md:h-[55px] border rounded-[5px]"></span>
+          <h4 className="text-[#db4444] font-bold mx-3 md:mx-5 text-md md:text-lg">
             Our Products
           </h4>
         </div>
+
         <div className="flex mt-10 items-center font-bold justify-start">
           <h1 className="text-4xl font-semibold">Flash Sales</h1>
         </div>

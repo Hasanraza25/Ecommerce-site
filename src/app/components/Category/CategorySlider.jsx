@@ -8,7 +8,7 @@ const CategorySlider = ({ products }) => {
   const [visibleCards, setVisibleCards] = useState(3);
   const [isHovered, setIsHovered] = useState(null);
   
-  const cardWidth = 250;
+  const cardWidth = 450;
   const totalCards = products.length;
 
   useEffect(() => {
