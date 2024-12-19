@@ -21,7 +21,7 @@ const CategoryDropdown = () => {
   };
 
   return (
-    <div className="w-72 min-h-full p-5 bg-white mr-20 border-r-2">
+    <div className="lg:w-72 min-h-full p-5 bg-white lg:mr-20 border-r-2">
       <ul>
         {categories.map((category, index) => (
           <li key={index} className="mb-2">

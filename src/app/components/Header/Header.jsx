@@ -22,7 +22,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="pb-4 pt-8 px-24 border-b-2 mytext ">
+    <header className="pb-4 pt-8 px-4 border-b-2 mytext ">
       <div className="container flex justify-between items-center mx-auto">
         <div className="text-white text-lg flex items-center lg:block">
           <Image
@@ -39,7 +39,7 @@ const Header = () => {
               {menuItems.map((item) => (
                 <li
                   key={item.name}
-                  className={`mx-5 tracking-wider cursor-pointer relative ${
+                  className={`mx-5 tracking-wider cursor-pointer relative mytext-sm ${
                     activeItem === item.name
                       ? "text-black font-medium"
                       : "text-gray-600"
@@ -67,7 +67,7 @@ const Header = () => {
             <input
               type="text"
               placeholder="What are you looking for?"
-              className="w-full py-2 px-4 rounded-md bg-[#f5f5f5] text-gray-700 focus:outline-none tracking-wider"
+              className="w-full py-2 px-4 rounded-md bg-[#f5f5f5] text-gray-700 focus:outline-none tracking-wider sm:text-sm"
             />
             <div className="absolute top-0 right-4 flex items-center justify-center h-full text-gray-500">
               <Image
@@ -129,7 +129,7 @@ const Header = () => {
       </div>
 
 
-        <div className="mt-4 lg:hidden px-4 z-10">
+        <div className="mt-4 lg:hidden z-10">
           <div className="input-field relative w-full">
             <input
               type="text"

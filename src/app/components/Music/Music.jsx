@@ -86,12 +86,14 @@ const Music = () => {
         </div>
 
         {/* Image */}
+        {/* Image */}
         <div className="lg:w-1/2 w-full relative mt-10 lg:mt-0">
-          <div className="relative h-64 lg:h-full w-full">
+          <div className="relative w-full h-[300px] md:h-[400px] lg:h-full">
             <Image
               src="/images/music-player.svg"
               alt="Music Player"
               layout="fill"
+              
             />
           </div>
         </div>
