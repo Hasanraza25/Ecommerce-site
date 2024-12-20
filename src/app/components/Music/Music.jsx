@@ -51,7 +51,7 @@ const Music = () => {
           <h1 className="text-[2rem] lg:text-[3rem] mt-6 font-semibold leading-snug">
             Enhance Your Music Experience
           </h1>
-          <div className="flex flex-wrap justify-center lg:justify-start items-center mt-10 gap-4">
+          <div className="flex flex-wrap justify-start items-center mt-10 gap-4">
             <div className="flex flex-col items-center justify-center bg-white text-black w-16 h-16 sm:w-16 sm:h-16 rounded-full">
               <span className="text-base sm:text-xs font-bold">
                 {String(timeLeft.hours).padStart(2, "0")}
