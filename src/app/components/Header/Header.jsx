@@ -1,19 +1,18 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/router"; // Import useRouter hook
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState("Home");
+  const currentPath = usePathname(); // Initialize the router
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const handleNavClick = (item) => {
-    setActiveItem(item);
-  };
   const menuItems = [
     { name: "Home", path: "/" },
     { name: "Contact", path: "/contact" },
@@ -22,15 +21,17 @@ const Header = () => {
   ];
 
   return (
-    <header className="pb-4 pt-8 px-4 border-b-2 mytext ">
+    <header className="pb-4 pt-8 px-4 border-b-2 mytext sticky top-0 bg-white z-40">
       <div className="container flex justify-between items-center mx-auto">
         <div className="text-white text-lg flex items-center lg:block">
-          <Image
-            src="/images/logo.svg"
-            alt="Company Logo"
-            width={120}
-            height={30}
-          />
+          <Link href="/">
+            <Image
+              src="/images/logo.svg"
+              alt="Company Logo"
+              width={120}
+              height={30}
+            />
+          </Link>
         </div>
 
         <div className="nav-items hidden lg:block">
@@ -39,20 +40,17 @@ const Header = () => {
               {menuItems.map((item) => (
                 <li
                   key={item.name}
-                  className={`mx-5 tracking-wider cursor-pointer relative mytext-sm ${
-                    activeItem === item.name
-                      ? "text-black font-medium"
+                  className={`mx-5 tracking-wider cursor-pointer relative hover:text-black ${
+                    currentPath === item.path
+                      ? "text-black font-medium pb-1"
                       : "text-gray-600"
                   }`}
                 >
-                  <Link
-                    href={item.path}
-                    onClick={() => handleNavClick(item.name)}
-                  >
+                  <Link href={item.path}>
                     {item.name}
                     <span
                       className={`absolute bottom-0 left-0 w-full h-0.5 bg-black transition-transform duration-300 ease-in-out transform ${
-                        activeItem === item.name ? "scale-x-100" : "scale-x-0"
+                        currentPath === item.path ? "scale-x-100" : "scale-x-0"
                       }`}
                     ></span>
                   </Link>
@@ -108,8 +106,8 @@ const Header = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="black"
-                width="30"
-                height="30"
+                width={30}
+                height={30}
               >
                 <path d="M18.3 5.7L12 12l6.3 6.3-1.4 1.4L12 13.4l-6.3 6.3-1.4-1.4L10.6 12 4.3 5.7l1.4-1.4L12 10.6l6.3-6.3z" />
               </svg>
@@ -118,8 +116,8 @@ const Header = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="black"
-                width="30"
-                height="30"
+                width={30}
+                height={30}
               >
                 <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
               </svg>
@@ -127,26 +125,6 @@ const Header = () => {
           </button>
         </div>
       </div>
-
-
-        <div className="mt-4 lg:hidden z-10">
-          <div className="input-field relative w-full">
-            <input
-              type="text"
-              placeholder="What are you looking for?"
-              className="w-full py-2 px-4 rounded-md bg-[#f5f5f5] text-gray-700 focus:outline-none tracking-wider"
-            />
-            <div className="absolute top-0 right-4 flex items-center justify-center h-full text-gray-500">
-              <Image
-                src="/images/search.svg"
-                alt="Search Logo"
-                width={20}
-                height={20}
-              />
-            </div>
-          </div>
-        </div>
-
 
       <div
         className={`lg:hidden absolute top-[5rem] left-0 w-full bg-white shadow-md z-50 transition-all duration-300 ease-in-out ${
@@ -160,12 +138,9 @@ const Header = () => {
             <Link
               key={item.name}
               href={item.path}
-              onClick={() => {
-                handleNavClick(item.name);
-                setMenuOpen(false); // Close menu on click
-              }}
+              onClick={() => setMenuOpen(false)} // Close menu on click
               className={`text-lg tracking-wider relative ${
-                activeItem === item.name
+                currentPath === item.path
                   ? "text-black font-medium"
                   : "text-gray-600"
               }`}
@@ -173,7 +148,7 @@ const Header = () => {
               {item.name}
               <span
                 className={`absolute bottom-0 left-0 w-full h-0.5 bg-black transition-transform duration-300 ease-in-out transform ${
-                  activeItem === item.name ? "scale-x-100" : "scale-x-0"
+                  currentPath === item.path ? "scale-x-100" : "scale-x-0"
                 }`}
               ></span>
             </Link>

@@ -7,7 +7,6 @@ import Music from "./components/Music/Music";
 import AllProducts from "./components/Products/AllProducts";
 import Featured from "./components/Featured/Featured";
 import Services from "./components/Services/Services";
-import Footer from "./components/Footer/Footer";
 
 export default function Home() {
   return (
@@ -20,7 +19,6 @@ export default function Home() {
       <AllProducts />
       <Featured />
       <Services />
-      <Footer />
     </>
   );
 }

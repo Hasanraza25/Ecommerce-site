@@ -27,6 +27,10 @@ body {
   scrollbar-width: none;
 }
 
+.auth-fields input {
+  @apply border-b border-b-[#808080] pb-1 text-lg text-[#999999] font-medium outline-none w-full;
+}
+
 @media (min-width: 1366px) and (max-width: 1450px) {
   .px-20.hero-content {
     padding: 0 4rem;
@@ -54,7 +58,7 @@ body {
   }
 }
 
-@media  (max-width: 1279px) {
+@media (max-width: 1279px) {
   .footer-container .four {
     margin-top: 5rem !important;
   }
@@ -63,16 +67,25 @@ body {
   }
 }
 
+@media (min-width: 1023px) and (max-width: 1279px) {
+  .login-container {
+    @apply flex-col space-x-0 !important;
+  }
+  .login-one {
+    @apply w-full !important;
+  }
+  .login-two {
+    @apply w-full  space-x-0 !important;
+  }
+}
 @media (max-width: 1023px) {
   .footer-container .three {
     margin-top: 5rem !important;
   }
 }
 
-
-@media (max-width: 559px){
+@media (max-width: 559px) {
   .footer-container .two {
     margin-top: 5rem !important;
   }
 }
-

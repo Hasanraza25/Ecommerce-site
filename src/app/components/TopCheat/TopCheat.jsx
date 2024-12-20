@@ -47,7 +47,7 @@ const TopCheat = () => {
             </svg>
           </button>
           {dropdownOpen && (
-            <ul className="absolute right-0 bg-white text-black  border mt-2 w-28 rounded shadow-lg z-30">
+            <ul className="absolute right-0 bg-white text-black  border mt-2 w-28 rounded shadow-lg z-50">
               <li
                 className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
                 onClick={() => handleLanguageChange('English')}

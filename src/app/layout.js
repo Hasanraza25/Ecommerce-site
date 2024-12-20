@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/Header/Header";
 import TopCheat from "./components/TopCheat/TopCheat";
+import Footer from "./components/Footer/Footer";
 
 const poppins = localFont({
   src: "./fonts/Poppins/Poppins-Regular.ttf",
@@ -32,8 +33,12 @@ export default function RootLayout({ children }) {
         className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <TopCheat />
-        <Header />
+
+          <Header />
+     
+
         {children}
+        <Footer />
       </body>
     </html>
   );
