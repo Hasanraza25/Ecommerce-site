@@ -30,13 +30,13 @@ const Featured = () => {
           </div>
         </div>
         <div className="bg-black w-full rounded-xl relative flex flex-col mt-10 lg:mt-0">
-          <img src="images/featured/perfume.svg" alt="" className="ml-5 mt-11 " />
+          <img src="images/laptop.svg" alt="" className="ml-5 mt-11 " />
           <div className="text-white absolute bottom-10 sm:bottom-5 lg:mx-12 sm:mx-5 mx-8">
             <h2 className="lg:text-3xl text-5xl font-bold lg:mb-4 mb-10 sm:mb-4 sm:text-2xl">
-              Perfume
+              Laptop
             </h2>
             <p className="lg:text-lg text-2xl mb-4 lg:w-[70%] w-[90%] sm:text-sm ">
-            GUCCI INTENSE OUD EDP
+            ASUS FHD Gaming Laptop 
             </p>
             <button className="text-lg mx-auto md:mx-0 md:text-xl">
               <span className="border-b-2 border-[#878787]">Shop Now</span>

@@ -24,7 +24,7 @@ const Footer = () => {
               <img
                 src="images/icons/arrow-map.svg"
                 alt="Arrow Icon"
-                className="absolute right-4 bottom-0 transform translate-y-[-75%]"
+                className="absolute right-5 bottom-0 transform translate-y-[-80%]"
               />
             </div>
           </div>
