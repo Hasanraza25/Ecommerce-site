@@ -10,27 +10,36 @@ import {
 import {
   faHeart as faHeartOutline,
   faEye as faEyeOutline,
-} from "@fortawesome/free-regular-svg-icons"; // Outline heart
+} from "@fortawesome/free-regular-svg-icons";
 import { useState } from "react";
+import Link from "next/link";
 
 const ProductCard = ({ product }) => {
   const [isHeartClicked, setIsHeartClicked] = useState(false);
   const [isEyeClicked, setIsEyeClicked] = useState(false);
+  const [isHovered, setIsHovered] = useState(true);
   return (
-    <div className="flex-shrink-0 max-w-[20rem] h-full rounded-lg relative mr-4 border-none">
-      <div className="bg-[#f5f5f5] w-full p-4 h-60 flex items-center">
+    <div className="flex-shrink-0 max-w-[20rem] lg:min-w-[20rem] sm:min-w-[18rem] h-full rounded-lg relative mr-4 border-none">
+      {/* Image Section */}
+      <div
+        className="bg-[#f5f5f5] w-full p-4 h-60 flex items-center relative"
+        // onMouseEnter={setIsHovered(true)}
+        // onMouseLeave={setIsHovered(false)}
+      >
         {product.discount && (
           <span className="absolute top-2 left-2 bg-red-500 text-white text-sm px-3 py-1 rounded">
             -{product.discount}%
           </span>
         )}
 
-        {/* Product Image */}
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-40 object-contain"
-        />
+        {/* Centered Image */}
+        <div className="flex justify-center items-center mx-auto w-full">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-50 h-50 object-contain"
+          />
+        </div>
 
         {/* Action Buttons */}
         <div className="absolute top-4 right-2 flex flex-col space-y-2">
@@ -46,7 +55,6 @@ const ProductCard = ({ product }) => {
             />
           </button>
 
-          {/* Eye Button */}
           <button
             className={`bg-white w-8 h-8 rounded-full flex items-center justify-center hover:text-red-500 ${
               isEyeClicked ? "text-red-500" : "text-black"
@@ -60,8 +68,19 @@ const ProductCard = ({ product }) => {
           </button>
         </div>
       </div>
+
+      {/* Add To Cart Section */}
+      {isHovered && (
+        <div className="bg-black text-white w-full text-center py-2">
+          <Link href="#">
+          Add To Cart
+          </Link>
+        </div>
+      )}
+
+      {/* Content Section */}
       <div className="mt-4 p-4">
-        <h3 className="text-lg ">{product.name}</h3>
+        <h3 className="text-lg">{product.name}</h3>
         <div className="flex items-center space-x-2 mt-2">
           <span className="text-red-500 text-lg font-bold">
             ${product.discountedPrice}
@@ -73,20 +92,25 @@ const ProductCard = ({ product }) => {
           )}
         </div>
 
-        {/* Ratings */}
-        <div className="flex items-center space-x-1 mt-2">
-          {Array(Math.floor(product.rating))
+        {/* Rating Section */}
+        <div className="flex items-center space-x-1 mt-2 ">
+          {Array(5)
             .fill()
             .map((_, i) => (
               <FontAwesomeIcon
                 key={i}
-                icon={faStar}
-                className="text-[#ffad33]"
+                icon={
+                  i < Math.floor(product.rating)
+                    ? faStar
+                    : i < product.rating
+                    ? faStarHalfAlt
+                    : faStar
+                }
+                style={{
+                  color: i < product.rating ? "#ffad33" : "#bfbfbf",
+                }}
               />
             ))}
-          {product.rating % 1 !== 0 && (
-            <FontAwesomeIcon icon={faStarHalfAlt} className="text-[#ffad33]" />
-          )}
           <div className="ml-2">({product.buyers})</div>
         </div>
       </div>

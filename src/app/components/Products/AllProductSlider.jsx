@@ -28,7 +28,7 @@ const AllProductSlider = ({ products }) => {
   };
 
   return (
-    <div className="relative flex flex-col h-full mb-20">
+    <div className="relative flex flex-col justify-between w-full h-full mb-20 ">
       {/* Arrow Buttons Centered Above Slider */}
       <div className=" md:-top-10 right-0 flex justify-end w-full mb-3">
         <button
@@ -61,7 +61,10 @@ const AllProductSlider = ({ products }) => {
             className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-6 mx-auto justify-center items-center"
           >
             {displayedProducts.map((product, index) => (
+
+
               <ProductCard key={index} product={product} />
+              
             ))}
           </div>
         </div>
