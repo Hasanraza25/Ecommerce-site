@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => {
   const [isEyeClicked, setIsEyeClicked] = useState(false);
   const [isHovered, setIsHovered] = useState(true);
   return (
-    <div className="flex-shrink-0 max-w-[20rem] lg:min-w-[20rem] sm:min-w-[18rem] h-full rounded-lg relative mr-4 border-none">
+    <div className="flex-shrink-0 max-w-[20rem] min-w-[15rem]  h-full rounded-lg relative mr-4 border-none">
       {/* Image Section */}
       <div
         className="bg-[#f5f5f5] w-full p-4 h-60 flex items-center relative"
@@ -80,7 +80,7 @@ const ProductCard = ({ product }) => {
 
       {/* Content Section */}
       <div className="mt-4 p-4">
-        <h3 className="text-lg">{product.name}</h3>
+        <h3 className="text-lg">{product.name}&nbsp;</h3>
         <div className="flex items-center space-x-2 mt-2">
           <span className="text-red-500 text-lg font-bold">
             ${product.discountedPrice}

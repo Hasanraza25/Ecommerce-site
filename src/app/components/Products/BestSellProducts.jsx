@@ -111,11 +111,11 @@ const BestSellProducts = () => {
             cursor: isMobileOrTablet ? "grab" : "default", // Grab cursor only on mobile/tablet
           }}
         >
-          <div className="flex ">
+          <div className="flex justify-between">
             {products.map((product, index) => (
               <div
                 key={index}
-                className="flex-shrink-0  mx-auto w-[20rem]"
+                className=" min-w-[20rem]"
               >
                 <ProductCard product={product} />
               </div>

@@ -6,6 +6,7 @@ import BestSellProducts from "./components/Products/BestSellProducts";
 import Music from "./components/Music/Music";
 import AllProducts from "./components/Products/AllProducts";
 import Featured from "./components/Featured/Featured";
+import Services from "./components/Services/Services";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <Music />
       <AllProducts />
       <Featured />
+      <Services />
     </>
   );
 }

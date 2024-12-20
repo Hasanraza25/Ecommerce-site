@@ -30,7 +30,7 @@ const Featured = () => {
           </div>
         </div>
         <div className="bg-black w-full rounded-xl relative flex flex-col mt-10 lg:mt-0">
-          <img src="images/featured/perfume.svg" alt="" className="ml-5 mt-16 " />
+          <img src="images/featured/perfume.svg" alt="" className="ml-5 mt-11 " />
           <div className="text-white absolute bottom-10 sm:bottom-5 lg:mx-12 sm:mx-5 mx-8">
             <h2 className="lg:text-3xl text-5xl font-bold lg:mb-4 mb-10 sm:mb-4 sm:text-2xl">
               Perfume
