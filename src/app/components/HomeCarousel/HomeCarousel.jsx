@@ -69,10 +69,10 @@ const HomeCarousel = () => {
             className="flex-none w-full h-full flex flex-col md:flex-row items-center justify-between bg-black pt-10"
           >
             {/* Text Section */}
-            <div className="text-white px-6 sm:px-8 md:px-12 w-full md:flex-1 text-center md:text-left mb-6 md:mb-0">
+            <div className="text-white px-6 sm:px-8 md:px-12 w-full md:flex-1 text-center md:text-left mb-6 md:mb-0 sm:justify-items-center">
               <div className="flex items-center space-x-4 mb-5">
                 <img src="images/apple-icon.png" alt="" />
-              <h3 className="text-lg md:text-xl lg:text-2xl">
+              <h3 className="text-lg md:text-xl lg:text-2xl ">
                 iPhone 14 Series
               </h3>
               </div>

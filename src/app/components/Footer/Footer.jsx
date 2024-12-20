@@ -6,7 +6,7 @@ const Footer = () => {
     <>
       <div className="bg-black">
         <div className="container footer-container flex flex-wrap items-start sm:items-center sm:justify-center sm:text-center px-10 text-white md:space-y-0 mx-auto py-20 md:justify-between">
-          <div className="flex flex-col w-60">
+          <div className="flex flex-col w-auto max-w-96">
             <h3 className="text-2xl font-bold tracking-widest mb-5">
               Exclusive
             </h3>
@@ -18,7 +18,7 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="border-2 bg-black p-3 tracking-wide"
+                className="border-2 bg-black p-3 tracking-wide w-60"
                 style={{ borderRadius: "0.3rem" }}
               />
               <img
@@ -29,21 +29,21 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="flex flex-col w-60 two">
+          <div className="flex flex-col w-auto two max-w-96">
             <h3 className="text-2xl font-medium tracking-wide mb-5">Support</h3>
             <ul className="space-y-5 text-base tracking-wide">
-              <li>111 Bijoy Sarani, Dhaka, DH 1515, Bangladesh.</li>
+              <li>Karachi, Pakistan.</li>
               <li>
                 <Link
-                  href="mailto:exclusive@gmail.com"
+                  href="mailto:hasanhussain2580@gmail.com"
                   className="hover:underline"
                 >
-                  exclusive@gmail.com
+                  hasanhussain2580@gmail.com
                 </Link>
               </li>
               <li>
-                <Link href="tel:+88015888889999" className="hover:underline">
-                  +88015-88888-9999
+                <Link href="tel:+923363566329" className="hover:underline">
+                  +92 336 3566329
                 </Link>
               </li>
             </ul>
@@ -116,7 +116,7 @@ const Footer = () => {
               Save $3 with App New User Only
             </p>
             <img src="images/download-app.svg" alt="Download App" />
-            <div className="icons flex space-x-9 mt-5">
+            <div className="icons flex space-x-9 mt-5 justify-center">
               <Link href="https://facebook.com">
                 <img src="images/icons/facebook.svg" alt="Facebook" />
               </Link>
@@ -126,7 +126,7 @@ const Footer = () => {
               <Link href="https://instagram.com">
                 <img src="images/icons/instagram.svg" alt="Instagram" />
               </Link>
-              <Link href="https://linkedin.com">
+              <Link href="https://www.linkedin.com/in/hasanraza25/">
                 <img src="images/icons/linkedin.svg" alt="LinkedIn" />
               </Link>
             </div>
