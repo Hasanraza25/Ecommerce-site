@@ -1,13 +1,12 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/router"; // Import useRouter hook
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const currentPath = usePathname(); // Initialize the router
+  const currentPath = usePathname();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -66,6 +65,7 @@ const Header = () => {
               type="text"
               placeholder="What are you looking for?"
               className="w-full py-2 px-4 rounded-md bg-[#f5f5f5] text-gray-700 focus:outline-none tracking-wider sm:text-sm"
+              style={{ borderRadius: "0.3rem" }}
             />
             <div className="absolute top-0 right-4 flex items-center justify-center h-full text-gray-500">
               <Image
@@ -76,22 +76,37 @@ const Header = () => {
               />
             </div>
           </div>
-          <div className="header-icons flex justify-between px-5">
-            <Image
-              src="/images/wishlist.svg"
-              alt="Wishlist logo"
-              width={35}
-              height={30}
-              className="mx-3"
-            />
-            <Image
-              src="/images/cart.svg"
-              alt="Cart Logo"
-              width={35}
-              height={30}
-              className="mx-3"
-            />
-          </div>
+          {currentPath !== "/sign-up" && currentPath !== "/login" && (
+              <div className="header-icons flex justify-between px-5">
+                <Link href="/">
+                  <Image
+                    src="/images/wishlist.svg"
+                    alt="Wishlist logo"
+                    width={35}
+                    height={30}
+                    className="mx-3"
+                  />
+                </Link>
+                <Link href="/">
+                  <Image
+                    src="/images/cart.svg"
+                    alt="Cart Logo"
+                    width={35}
+                    height={30}
+                    className="mx-3"
+                  />
+                </Link>
+                <Link href="/">
+                  <Image
+                    src="/images/user.svg"
+                    alt="User Logo"
+                    width={35}
+                    height={30}
+                    className="mx-3"
+                  />
+                </Link>
+              </div>
+            )}
         </div>
 
         <div className="lg:hidden flex items-center">
