@@ -42,7 +42,6 @@ body {
 }
 
 @media (min-width: 1024px) and (max-width: 1350px) {
-
   .px-20.hero-content {
     padding: 0 4rem !important;
   }
@@ -54,3 +53,26 @@ body {
     margin: 0 2rem;
   }
 }
+
+@media  (max-width: 1279px) {
+  .footer-container .four {
+    margin-top: 5rem !important;
+  }
+  .footer-container .five {
+    margin-top: 5rem !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .footer-container .three {
+    margin-top: 5rem !important;
+  }
+}
+
+
+@media (max-width: 559px){
+  .footer-container .two {
+    margin-top: 5rem !important;
+  }
+}
+
