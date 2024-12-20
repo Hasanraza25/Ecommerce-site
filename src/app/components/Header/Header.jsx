@@ -26,7 +26,7 @@ const Header = () => {
       <div className="container flex justify-between items-center mx-auto">
         <div className="text-white text-lg flex items-center lg:block">
           <Image
-            src="/images/logo.png"
+            src="/images/logo.svg"
             alt="Company Logo"
             width={120}
             height={30}
