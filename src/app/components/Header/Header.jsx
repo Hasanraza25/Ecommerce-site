@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -12,6 +12,7 @@ const Header = () => {
   const [isCartHovered, setIsCartHovered] = useState(false);
   const [isUserHovered, setIsUserHovered] = useState(false);
   const currentPath = usePathname();
+  const dropdownRef = useRef(null);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -21,25 +22,28 @@ const Header = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
+  const handleClickOutside = (event) => {
+    // Check if the clicked element is outside the dropdown container
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropdownOpen(false);
+    }
+  };
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!event.target.closest(".dropdown-container")) {
-        setDropdownOpen(false);
-      }
-    };
+    if (dropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
 
     const handleRouteChange = () => {
       setDropdownOpen(false);
     };
 
-    document.addEventListener("click", handleClickOutside);
-    window.addEventListener("popstate", handleRouteChange); // when browser's history changes i.e changing route
+    window.addEventListener("popstate", handleRouteChange);
 
     return () => {
-      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
       window.removeEventListener("popstate", handleRouteChange);
     };
-  }, []);
+  }, [dropdownOpen]);
 
   const menuItems = [
     { name: "Home", path: "/" },
@@ -148,6 +152,7 @@ const Header = () => {
                 </Link>
                 <div
                   className="relative hover:bg-[#db4444] rounded-full w-10 h-10 flex justify-center items-center transition duration-300 dropdown-container"
+                  ref={dropdownRef}
                   onMouseEnter={() => setIsUserHovered(true)}
                   onMouseLeave={() => setIsUserHovered(false)}
                 >
@@ -210,7 +215,7 @@ const Header = () => {
         </div>
 
         <div
-          className={`lg:hidden absolute left-0 w-full bg-white shadow-md z-50 transition-all duration-300 ease-in-out ${
+          className={`lg:hidden block absolute left-0 w-full bg-white shadow-md z-50 transition-all duration-300 ease-in-out ${
             menuOpen
               ? "opacity-100 translate-y-0"
               : "opacity-0 -translate-y-4 pointer-events-none"

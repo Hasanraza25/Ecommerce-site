@@ -110,7 +110,7 @@ const Wishlist = () => {
 
   return (
     <>
-      <div className="container mx-auto flex flex-col px-2 overflow-hidden my-10">
+      <div className="container mx-auto flex flex-col px-8 overflow-hidden my-10">
         <div className="container flex mt-10 items-center font-bold justify-between flex-col md:flex-row">
           <h1 className="text-xl font-medium">Wishlist &#40;4&#41;</h1>
           <div className="mt-10 md:mt-0">
