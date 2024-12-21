@@ -11,7 +11,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="container px-0 lg:px-5 hero-content relative mx-auto">
+    <div className="container px-8 lg:px-5 hero-content relative mx-auto">
       {/* Header Categories Button for Mobile/Tablet */}
       <div className="lg:hidden px-4 mt-4">
         <button

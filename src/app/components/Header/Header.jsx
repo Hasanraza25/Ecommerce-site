@@ -50,7 +50,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="lg:pb-4 pb-2 pt-8 px-4 lg:border-b-2 mytext sticky top-0 bg-white z-40">
+      <header className="lg:pb-4 pb-2 pt-8 px-8 lg:border-b-2 mytext sticky top-0 bg-white z-40">
         <div className="container flex justify-between items-center mx-auto">
           <div className="text-white text-lg flex items-center lg:block">
             <Link href="/">

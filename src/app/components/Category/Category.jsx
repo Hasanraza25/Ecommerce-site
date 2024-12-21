@@ -56,7 +56,7 @@ const Category = () => {
   ];
   return (
     <>
-      <div className="container mx-auto px-2 flex flex-col overflow-hidden">
+      <div className="container mx-auto px-8 flex flex-col overflow-hidden">
         <div className="heading flex items-center mt-16 md:mt-24">
           <span className="bg-[#db4444] w-5 h-10 md:w-[30px] md:h-[55px] border rounded-[5px]"></span>
           <h4 className="text-[#db4444] font-bold mx-3 md:mx-5 text-md md:text-lg">
