@@ -10,7 +10,7 @@ const Login = () => {
         </div>
         <div className="flex flex-col lg:space-y-10 lg:px-14 px-10 lg:w-[40%] w-full login-two">
           <div className="space-y-5 lg:mb-0 mb-10">
-            <h1 className="text-4xl">Log in to Exclusive</h1>
+            <h1 className="text-4xl font-bold">Log in to Exclusive</h1>
             <p>Enter your details below</p>
           </div>
           <form className="flex flex-col space-y-8 auth-fields mb-16">

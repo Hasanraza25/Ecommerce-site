@@ -19,7 +19,7 @@ const TopCheat = () => {
             Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
           </h4>
 
-            <a href='#' className="text-blue-400 underline hover:text-blue-600">
+            <a href='#' className="text-white font-bold underline hover:text-blue-600 text-sm">
               Shop Now
             </a>
         </div>
