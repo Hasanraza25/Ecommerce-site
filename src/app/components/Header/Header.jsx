@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,6 +8,9 @@ import AccountDropdown from "../AccountDropdown/AccountDropdown";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isWishlistHovered, setIsWishlistHovered] = useState(false);
+  const [isCartHovered, setIsCartHovered] = useState(false);
+  const [isUserHovered, setIsUserHovered] = useState(false);
   const currentPath = usePathname();
 
   const toggleMenu = () => {
@@ -17,6 +20,26 @@ const Header = () => {
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest(".dropdown-container")) {
+        setDropdownOpen(false);
+      }
+    };
+
+    const handleRouteChange = () => {
+      setDropdownOpen(false);
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    window.addEventListener("popstate", handleRouteChange); // when browser's history changes i.e changing route
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+      window.removeEventListener("popstate", handleRouteChange);
+    };
+  }, []);
 
   const menuItems = [
     { name: "Home", path: "/" },
@@ -86,36 +109,62 @@ const Header = () => {
               </div>
             </div>
             {currentPath !== "/sign-up" && currentPath !== "/login" && (
-              <div className="header-icons flex justify-between px-5">
-                <Link href="/">
+              <div className="header-icons flex justify-between px-5 space-x-3">
+                <Link
+                  href="/wishlist"
+                  className=" hover:bg-[#db4444] rounded-full w-11 h-11 text-center flex justify-center"
+                >
                   <Image
-                    src="/images/wishlist.svg"
+                    src={
+                      isWishlistHovered
+                        ? "/images/wishlist-white.svg"
+                        : "/images/wishlist.svg"
+                    }
                     alt="Wishlist logo"
-                    width={35}
+                    width={40}
                     height={30}
-                    className="mx-3"
+                    className="mx-3 "
+                    onMouseEnter={() => setIsWishlistHovered(true)}
+                    onMouseLeave={() => setIsWishlistHovered(false)}
                   />
                 </Link>
-                <Link href="/">
+                <Link
+                  href="/"
+                  className=" hover:bg-[#db4444] rounded-full w-11 h-11 text-center flex justify-center"
+                >
                   <Image
-                    src="/images/cart.svg"
+                    src={
+                      isCartHovered
+                        ? "/images/cart-white.svg"
+                        : "/images/cart.svg"
+                    }
                     alt="Cart Logo"
                     width={35}
                     height={30}
                     className="mx-3"
+                    onMouseEnter={() => setIsCartHovered(true)}
+                    onMouseLeave={() => setIsCartHovered(false)}
                   />
                 </Link>
-                <div className="relative">
+                <div
+                  className="relative hover:bg-[#db4444] rounded-full w-10 h-10 flex justify-center items-center transition duration-300 dropdown-container"
+                  onMouseEnter={() => setIsUserHovered(true)}
+                  onMouseLeave={() => setIsUserHovered(false)}
+                >
                   <button
                     onClick={toggleDropdown}
                     className="focus:outline-none"
                   >
                     <Image
-                      src="/images/user.svg"
+                      src={
+                        isUserHovered
+                          ? "/images/icons/user.svg"
+                          : "/images/user.svg"
+                      }
                       alt="User Logo"
                       width={35}
-                      height={30}
-                      className="mx-3"
+                      height={35}
+                      className=""
                     />
                   </button>
                   {dropdownOpen && (
@@ -172,7 +221,7 @@ const Header = () => {
               <Link
                 key={item.name}
                 href={item.path}
-                onClick={() => setMenuOpen(false)} // Close menu on click
+                onClick={() => setMenuOpen(false)}
                 className={`text-lg tracking-wider relative ${
                   currentPath === item.path
                     ? "text-black font-medium"
@@ -189,46 +238,69 @@ const Header = () => {
             ))}
           </nav>
           {currentPath !== "/sign-up" && currentPath !== "/login" && (
-              <div className="header-icons flex justify-between px-5 pt-2">
-                <Link href="/">
+            <div className="header-icons flex justify-between px-5 pt-2">
+              <Link
+                href="/wishlist"
+                className=" hover:bg-[#db4444] rounded-full w-10 h-10 text-center flex justify-center"
+              >
+                <Image
+                  src={
+                    isWishlistHovered
+                      ? "/images/wishlist-white.svg"
+                      : "/images/wishlist.svg"
+                  }
+                  alt="Wishlist logo"
+                  width={40}
+                  height={30}
+                  className="mx-3 "
+                  onMouseEnter={() => setIsWishlistHovered(true)}
+                  onMouseLeave={() => setIsWishlistHovered(false)}
+                />
+              </Link>
+              <Link
+                href="/"
+                className=" hover:bg-[#db4444] rounded-full w-10 h-10 text-center flex justify-center"
+              >
+                <Image
+                  src={
+                    isCartHovered
+                      ? "/images/cart-white.svg"
+                      : "/images/cart.svg"
+                  }
+                  alt="Cart Logo"
+                  width={35}
+                  height={30}
+                  className="mx-3"
+                  onMouseEnter={() => setIsCartHovered(true)}
+                  onMouseLeave={() => setIsCartHovered(false)}
+                />
+              </Link>
+              <div
+                className="relative hover:bg-[#db4444] rounded-full w-10 h-10 flex justify-center items-center transition duration-300"
+                onMouseEnter={() => setIsUserHovered(true)}
+                onMouseLeave={() => setIsUserHovered(false)}
+              >
+                <button onClick={toggleDropdown} className="focus:outline-none">
                   <Image
-                    src="/images/wishlist.svg"
-                    alt="Wishlist logo"
+                    src={
+                      isUserHovered
+                        ? "/images/icons/user.svg"
+                        : "/images/user.svg"
+                    }
+                    alt="User Logo"
                     width={35}
-                    height={30}
-                    className="mx-3"
+                    height={35}
+                    className=""
                   />
-                </Link>
-                <Link href="/">
-                  <Image
-                    src="/images/cart.svg"
-                    alt="Cart Logo"
-                    width={35}
-                    height={30}
-                    className="mx-3"
-                  />
-                </Link>
-                <div className="relative">
-                  <button
-                    onClick={toggleDropdown}
-                    className="focus:outline-none"
-                  >
-                    <Image
-                      src="/images/user.svg"
-                      alt="User Logo"
-                      width={35}
-                      height={30}
-                      className="mx-3"
-                    />
-                  </button>
-                  {dropdownOpen && (
-                    <div className="absolute top-12 right-0 shadow-lg border-none rounded-md w-72">
-                      <AccountDropdown />
-                    </div>
-                  )}
-                </div>
+                </button>
+                {dropdownOpen && (
+                  <div className="absolute top-12 right-0 shadow-lg border-none rounded-md w-72">
+                    <AccountDropdown />
+                  </div>
+                )}
               </div>
-            )}
+            </div>
+          )}
         </div>
       </header>
       <div className="lg:hidden px-4">

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, { useRef, useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 
@@ -85,7 +85,7 @@ const BestSellProducts = () => {
   return (
     <>
       <div className="container mx-auto flex flex-col px-2 overflow-hidden">
-      <div className="heading flex items-center mt-16 md:mt-24">
+        <div className="heading flex items-center mt-16 md:mt-24">
           <span className="bg-[#db4444] w-5 h-10 md:w-[30px] md:h-[55px] border rounded-[5px]"></span>
           <h4 className="text-[#db4444] font-bold mx-3 md:mx-5 text-md md:text-lg">
             This Month
@@ -113,10 +113,7 @@ const BestSellProducts = () => {
         >
           <div className="flex justify-between">
             {products.map((product, index) => (
-              <div
-                key={index}
-                className=" min-w-[20rem]"
-              >
+              <div key={index} className=" min-w-[20rem]">
                 <ProductCard product={product} />
               </div>
             ))}

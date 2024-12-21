@@ -3,7 +3,7 @@ import CountdownTimer from "../CountdownTimer/CountdownTimer";
 import ProductSlider from "../Products/ProductSlider";
 
 const Sales = () => {
-  const targetDate = new Date("2024-12-20T00:00:00");
+  const targetDate = new Date("2024-12-31T00:00:00");
 
   const products = [
     {
