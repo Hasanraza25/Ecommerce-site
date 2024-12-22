@@ -11,12 +11,12 @@ const Hero = () => {
   };
 
   return (
-    <div className="container px-8 lg:px-5 hero-content relative mx-auto">
+    <div className="container lg:px-5 hero-content relative mx-auto">
       {/* Header Categories Button for Mobile/Tablet */}
-      <div className="lg:hidden px-4 mt-4">
+      <div className="lg:hidden mt-4  px-8">
         <button
           onClick={toggleMobileDropdown}
-          className="w-full bg-gray-100 text-lg font-semibold text-black py-2 px-4 rounded flex items-center justify-between"
+          className="w-full bg-gray-100 text-lg font-semibold text-black py-2 px-4 rounded-md flex items-center justify-between sm:text-sm"
         >
           Categories
           <svg
@@ -39,9 +39,9 @@ const Hero = () => {
       </div>
 
       {/* Mobile Dropdown */}
-      <div className="flex items-center justify-center px-2 mx-auto ">
+      <div className="flex items-center justify-center mx-auto  px-8">
         {isMobileDropdownOpen && (
-          <div className="lg:hidden absolute top-12 w-[90%] px-2 bg-white shadow-lg z-30 border-none mx-auto">
+          <div className="lg:hidden absolute top-12 w-[85%] px-2 bg-white shadow-lg z-30 border-none mx-auto">
             <CategoryDropdown />
           </div>
         )}

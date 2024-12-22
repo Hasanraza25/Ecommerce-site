@@ -5,6 +5,7 @@ import {
   faEye as faEyeSolid,
   faStar,
   faStarHalfAlt,
+  faTrashCan
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -20,6 +21,7 @@ const ProductCard = ({
   reviewsVisible = true,
   isHeartVisible = true,
   isEyeVisible = true,
+  isTrashVisible = false,
 }) => {
   const [isHeartClicked, setIsHeartClicked] = useState(false);
   const [isEyeClicked, setIsEyeClicked] = useState(false);
@@ -79,6 +81,16 @@ const ProductCard = ({
             >
               <FontAwesomeIcon
                 icon={isEyeClicked ? faEyeSolid : faEyeOutline}
+                className="text-[1.2rem]"
+              />
+            </button>
+          )}
+          {isTrashVisible && (
+            <button
+              className={`bg-white w-8 h-8 rounded-full flex items-center justify-center hover:text-red-500`}
+            >
+              <FontAwesomeIcon
+                icon={faTrashCan}
                 className="text-[1.2rem]"
               />
             </button>

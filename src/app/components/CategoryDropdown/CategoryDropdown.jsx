@@ -27,7 +27,7 @@ const CategoryDropdown = () => {
           <li key={index} className="mb-2">
             <button
               onClick={() => toggleDropdown(index)}
-              className="flex items-center w-full text-lg p-2  font-medium text-left rounded text-black hover:bg-gray-100"
+              className="flex items-center w-full text-lg sm:text-sm p-2 font-medium text-left rounded-md text-black hover:bg-gray-100"
             >
               <span>{category}</span>
               <svg
@@ -47,10 +47,10 @@ const CategoryDropdown = () => {
             </button>
             {openCategory === index && (
               <ul className="mt-1 pl-4">
-                <li className="my-1 p-2 rounded hover:bg-gray-100">
+                <li className="my-1 p-2 rounded-md sm:text-sm hover:bg-gray-100">
                   <a href="#">Subcategory 1</a>
                 </li>
-                <li className="my-1 p-2 rounded hover:bg-gray-100">
+                <li className="my-1 p-2 rounded-md sm:text-sm hover:bg-gray-100">
                   <a href="#">Subcategory 2</a>
                 </li>
               </ul>

@@ -138,6 +138,7 @@ const Wishlist = () => {
                   reviewsVisible={false}
                   isHeartVisible={false}
                   isEyeVisible={false}
+                  isTrashVisible={true}
                 />
               </div>
             ))}

@@ -308,7 +308,7 @@ const Header = () => {
           )}
         </div>
       </header>
-      <div className="lg:hidden px-4">
+      <div className="lg:hidden px-8">
         <div className="input-field relative w-full mt-5">
           <input
             type="text"
