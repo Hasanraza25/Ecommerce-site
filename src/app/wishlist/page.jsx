@@ -53,6 +53,7 @@ const Wishlist = () => {
       discountedPrice: 560,
       rating: 5,
       buyers: 65,
+      isNew: true,
     },
     {
       image: "/images/product-keyboard.svg",

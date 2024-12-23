@@ -133,7 +133,7 @@ const Header = () => {
                   />
                 </Link>
                 <Link
-                  href="/"
+                  href="/cart"
                   className=" hover:bg-[#db4444] rounded-full w-11 h-11 text-center flex justify-center"
                 >
                   <Image

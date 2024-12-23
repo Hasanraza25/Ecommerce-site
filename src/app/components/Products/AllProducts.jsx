@@ -37,6 +37,7 @@ const AllProducts = () => {
       discountedPrice: 960,
       rating: 5,
       buyers: 65,
+      isNew: true,
     },
     {
       image: "/images/shoes.svg",
@@ -51,6 +52,7 @@ const AllProducts = () => {
       discountedPrice: 660,
       rating: 4.5,
       buyers: 55,
+      isNew: true,
     },
     {
       image: "/images/jacket.svg",

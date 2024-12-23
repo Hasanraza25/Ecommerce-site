@@ -10,16 +10,12 @@ const poppins = localFont({
   weight: "100 600 700 900",
 });
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const inter = localFont({
+  src: "./fonts/Inter/static/Inter_24pt-Regular.ttf",
+  variable: "--font-inter",
+  weight: "100 600 700 900",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+
 
 export const metadata = {
   title: "Exclusive",
@@ -30,7 +26,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`${poppins.variable} ${inter.variable} antialiased `}
       >
         <TopCheat />
 

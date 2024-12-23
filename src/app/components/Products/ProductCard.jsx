@@ -40,6 +40,11 @@ const ProductCard = ({
             -{product.discount}%
           </span>
         )}
+         {product.isNew && (
+          <span className="absolute top-2 left-2 bg-[#00ff66] text-white text-sm px-3 py-1 rounded">
+            NEW
+          </span>
+        )}
 
         {/* Centered Image */}
         <div className="flex justify-center items-center mx-auto w-full flex-1">
