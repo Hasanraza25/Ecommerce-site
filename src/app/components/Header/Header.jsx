@@ -57,13 +57,8 @@ const Header = () => {
       <header className="lg:pb-4 pb-2 pt-8 px-8 lg:border-b-2 mytext sticky top-0 bg-white z-40">
         <div className="container flex justify-between items-center mx-auto">
           <div className="text-white text-lg flex items-center lg:block">
-            <Link href="/">
-              <Image
-                src="/images/logo.svg"
-                alt="Company Logo"
-                width={120}
-                height={30}
-              />
+            <Link href="/" className="text-black text-[1.7rem] tracking-wide font-bold lg:ml-7">
+             Exculsive
             </Link>
           </div>
 

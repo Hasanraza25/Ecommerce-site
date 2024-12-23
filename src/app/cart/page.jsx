@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useState } from "react";
 
 const Cart = () => {
@@ -68,14 +69,12 @@ const Cart = () => {
           <li>Subtotal</li>
         </ul>
 
-        
         {cartItems.map((item) => (
           <ul
             key={item.id}
             className="grid md:grid-cols-4 grid-cols-1 text-center items-center gap-4 p-5 shadow-md bg-white"
             style={{ borderRadius: "0.3rem" }}
           >
-            
             <li className="md:col-span-1 flex flex-col lg:flex-row lg:justify-start lg:pl-10 items-center gap-2 lg:space-x-3">
               <div className="relative">
                 <img
@@ -103,7 +102,6 @@ const Cart = () => {
               <span className="text-gray-800 font-medium">{item.name}</span>
             </li>
 
-            
             <li className="md:col-span-1 flex justify-between md:justify-center items-center">
               <span className="text-gray-600 font-semibold md:hidden">
                 Price:
@@ -113,7 +111,6 @@ const Cart = () => {
               </span>
             </li>
 
-            
             <li className="md:col-span-1 flex justify-between md:justify-center items-center">
               <span className="text-gray-600 font-semibold md:hidden">
                 Quantity:
@@ -141,7 +138,6 @@ const Cart = () => {
               </div>
             </li>
 
-            
             <li className="md:col-span-1 flex justify-between md:justify-center items-center">
               <span className="text-gray-600 font-semibold md:hidden">
                 Subtotal:
@@ -153,7 +149,6 @@ const Cart = () => {
           </ul>
         ))}
 
-        
         <div className="container flex flex-col flex-wrap mt-10 items-start font-bold lg:justify-between mdd:justify-center justify-center mdd:space-y-5 lg:space-y-0 space-y-10 flex-col lg:flex-row">
           <div className="flex flex-wrap lg:space-x-4 space-x-0 lg:space-y-0 space-y-5 justify-center items-center mdd:w-full">
             <input
@@ -184,9 +179,11 @@ const Cart = () => {
                 <p>${calculateTotal()}</p>
               </div>
             </div>
-            <button className="bg-[#db4444] hover:bg-[#fa4545] py-3 text-white rounded-[5px] lg:w-60 mdd:w-full mx-auto tracking-wider">
-              Proceed to Checkout
-            </button>
+            <Link href={"/checkout"} className="mx-auto">
+              <button className="bg-[#db4444] hover:bg-[#fa4545] py-3 text-white rounded-[5px] lg:w-60 mdd:w-full mx-auto tracking-wider">
+                Proceed to Checkout
+              </button>
+            </Link>
           </div>
         </div>
       </div>
