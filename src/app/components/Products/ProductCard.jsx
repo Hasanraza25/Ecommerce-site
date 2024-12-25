@@ -76,7 +76,7 @@ const ProductCard = ({
   const pathName = usePathname();
   return (
     <div className="flex-shrink-0 max-w-[19rem] min-w-[15.5rem] h-full rounded-lg relative mr-4 border-none cursor-pointer">
-      <Link href={"/product/category/productdetail"}>
+      <Link href={"/product/productdetail"}>
         <div
           className="bg-[#f5f5f5] w-full p-4 h-60 flex flex-col justify-between items-center relative"
           onMouseEnter={() => setIsHovered(true)}
