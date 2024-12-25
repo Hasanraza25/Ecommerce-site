@@ -12,10 +12,13 @@ import {
   faHeart as faHeartOutline,
   faEye as faEyeOutline,
 } from "@fortawesome/free-regular-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/app/context/CartContext";
+import { useWishlist } from "@/app/context/WishlistContext";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ProductCard = ({
   product,
@@ -24,17 +27,51 @@ const ProductCard = ({
   isEyeVisible = true,
   isTrashVisible = false,
 }) => {
-  const { addToCart } = useCart();
+  const { cartItems, addToCart, removeFromCart } = useCart();
+  const { wishlistItems, addToWishlist, removeFromWishlist } = useWishlist();
   const [isHeartClicked, setIsHeartClicked] = useState(false);
   const [isEyeClicked, setIsEyeClicked] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isAddedToCart, setIsAddedToCart] = useState(() =>
+    cartItems.some((item) => item.id === product.id)
+  );
+
+  useEffect(() => {
+    if (wishlistItems.some((item) => item.id === product.id)) {
+      setIsHeartClicked(true);
+    }
+  }, [wishlistItems, product.id]);
 
   const handleAddToCart = () => {
     addToCart(product);
+    setIsAddedToCart(true);
+    toast.success("Item added to Cart!", {
+      autoClose: 2000,
+      closeButton: false,
+    });
   };
+
+  const handleRemoveFromCart = () => {
+    removeFromCart(product.id);
+    setIsAddedToCart(false);
+  };
+
+  const handleAddToWishlist = () => {
+    setIsHeartClicked(!isHeartClicked);
+    if (isHeartClicked) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+      toast.success("Product added to Wishlist!", {
+        autoClose: 2000,
+        closeButton: false,
+      });
+    }
+  };
+
   const pathName = usePathname();
   return (
-    <div className="flex-shrink-0 max-w-[19rem] min-w-[15rem] h-full rounded-lg relative mr-4 border-none cursor-pointer">
+    <div className="flex-shrink-0 max-w-[19rem] min-w-[15.5rem] h-full rounded-lg relative mr-4 border-none cursor-pointer">
       {/* Image Section */}
       <div
         className="bg-[#f5f5f5] w-full p-4 h-60 flex flex-col justify-between items-center relative"
@@ -61,13 +98,25 @@ const ProductCard = ({
           />
         </div>
 
-        <div
-          className={`bg-black text-white w-full text-center py-2 absolute bottom-0 ${
-            isHovered ? "lg:block" : "lg:hidden"
-          } md:block sm:block`}  onClick={handleAddToCart}
-        >
-          <button>Add To Cart</button>
-        </div>
+        {!isAddedToCart ? (
+          <div
+            className={`bg-black text-white w-full text-center py-2 absolute bottom-0 ${
+              isHovered ? "lg:block" : "lg:hidden"
+            } md:block sm:block`}
+            onClick={handleAddToCart}
+          >
+            <button>Add to Cart</button>
+          </div>
+        ) : (
+          <div
+            className={`bg-[#db4444] text-white w-full text-center py-2 absolute bottom-0 ${
+              isHovered ? "lg:block" : "lg:hidden"
+            } md:block sm:block`}
+            onClick={handleRemoveFromCart}
+          >
+            <button>Remove From Cart</button>
+          </div>
+        )}
 
         <div className="absolute top-4 right-2 flex flex-col space-y-2">
           {isHeartVisible && (
@@ -75,7 +124,7 @@ const ProductCard = ({
               className={`bg-white w-8 h-8 rounded-full flex items-center justify-center hover:text-red-500 ${
                 isHeartClicked ? "text-red-500" : "text-black"
               }`}
-              onClick={() => setIsHeartClicked(!isHeartClicked)}
+              onClick={handleAddToWishlist}
             >
               <FontAwesomeIcon
                 icon={isHeartClicked ? faHeartSolid : faHeartOutline}
@@ -99,6 +148,7 @@ const ProductCard = ({
           {isTrashVisible && (
             <button
               className={`bg-white w-8 h-8 rounded-full flex items-center justify-center hover:text-red-500`}
+              onClick={() => removeFromWishlist(product.id)}
             >
               <FontAwesomeIcon icon={faTrashCan} className="text-[1.2rem]" />
             </button>

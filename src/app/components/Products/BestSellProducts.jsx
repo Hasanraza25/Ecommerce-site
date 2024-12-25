@@ -65,7 +65,7 @@ const BestSellProducts = () => {
         <div className="flex mt-10 items-center font-bold justify-between flex-col md:flex-row">
           <h1 className="text-4xl font-semibold">Best Selling Products</h1>
           <div className="mb-10 mt-10 md:mt-0">
-            <button className="bg-[#db4444] hover:bg-[#fa4545] py-4 px-12 text-white rounded-[5px]">
+            <button className="red-button py-4 px-12">
               View All
             </button>
           </div>
@@ -82,9 +82,9 @@ const BestSellProducts = () => {
             cursor: isMobileOrTablet ? "grab" : "default", // Grab cursor only on mobile/tablet
           }}
         >
-          <div className="flex justify-between flex-wrap">
+          <div className="flex justify-between">
             {bestSellProducts.map((product, index) => (
-              <div key={index} className=" min-w-[20rem]">
+              <div key={index} className="w-full" >
                 <ProductCard product={product} />
               </div>
             ))}

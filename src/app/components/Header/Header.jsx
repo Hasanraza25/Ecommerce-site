@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import AccountDropdown from "../AccountDropdown/AccountDropdown";
 import { useCart } from "@/app/context/CartContext";
+import { useWishlist } from "@/app/context/WishlistContext";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,6 +16,7 @@ const Header = () => {
   const currentPath = usePathname();
   const dropdownRef = useRef(null);
   const { cartItems } = useCart();
+  const { wishlistItems } = useWishlist();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -116,7 +118,9 @@ const Header = () => {
               <div className="header-icons flex justify-between px-5 space-x-3">
                 <Link
                   href="/wishlist"
-                  className=" hover:bg-[#db4444] rounded-full w-11 h-11 text-center flex justify-center"
+                  className="relative hover:bg-[#db4444] rounded-full w-11 h-11 text-center flex justify-center items-center"
+                  onMouseEnter={() => setIsWishlistHovered(true)}
+                  onMouseLeave={() => setIsWishlistHovered(false)}
                 >
                   <Image
                     src={
@@ -124,13 +128,18 @@ const Header = () => {
                         ? "/images/wishlist-white.svg"
                         : "/images/wishlist.svg"
                     }
-                    alt="Wishlist logo"
-                    width={40}
+                    alt="Wishlist Logo"
+                    width={35}
                     height={30}
-                    className="mx-3 "
+                    className="mx-3"
                     onMouseEnter={() => setIsWishlistHovered(true)}
                     onMouseLeave={() => setIsWishlistHovered(false)}
                   />
+                  {wishlistItems && wishlistItems.length > 0 && (
+                    <span className="absolute top-0 right-0 text-xs font-bold text-white bg-[#db4444] rounded-full w-5 h-5 flex items-center justify-center">
+                      {wishlistItems.length}
+                    </span>
+                  )}
                 </Link>
                 <Link
                   href="/cart"
@@ -150,9 +159,11 @@ const Header = () => {
                     className="mx-3"
                   />
                   {/* Cart Count Badge */}
-                  <span className="absolute top-0 right-0 text-xs font-bold text-white bg-[#db4444] rounded-full w-5 h-5 flex items-center justify-center">
-                    {cartItems.length}
-                  </span>
+                  {cartItems && cartItems.length > 0 && (
+                    <span className="absolute top-0 right-0 text-xs font-bold text-white bg-[#db4444] rounded-full w-5 h-5 flex items-center justify-center">
+                      {cartItems.length}
+                    </span>
+                  )}
                 </Link>
 
                 <div
@@ -251,7 +262,9 @@ const Header = () => {
             <div className="header-icons flex justify-between px-5 pt-2">
               <Link
                 href="/wishlist"
-                className=" hover:bg-[#db4444] rounded-full w-10 h-10 text-center flex justify-center"
+                className="relative hover:bg-[#db4444] rounded-full w-11 h-11 text-center flex justify-center items-center"
+                onMouseEnter={() => setIsWishlistHovered(true)}
+                onMouseLeave={() => setIsWishlistHovered(false)}
               >
                 <Image
                   src={
@@ -259,13 +272,18 @@ const Header = () => {
                       ? "/images/wishlist-white.svg"
                       : "/images/wishlist.svg"
                   }
-                  alt="Wishlist logo"
-                  width={40}
+                  alt="Wishlist Logo"
+                  width={35}
                   height={30}
-                  className="mx-3 "
+                  className="mx-3"
                   onMouseEnter={() => setIsWishlistHovered(true)}
                   onMouseLeave={() => setIsWishlistHovered(false)}
                 />
+                {wishlistItems && wishlistItems.length > 0 && (
+                  <span className="absolute top-0 right-0 text-xs font-bold text-white bg-[#db4444] rounded-full w-5 h-5 flex items-center justify-center">
+                    {wishlistItems.length}
+                  </span>
+                )}
               </Link>
               <Link
                 href="/cart"
@@ -284,10 +302,11 @@ const Header = () => {
                   height={30}
                   className="mx-3"
                 />
-                {/* Cart Count Badge */}
-                <span className="absolute top-0 right-0 text-xs font-bold text-white bg-[#db4444] rounded-full w-5 h-5 flex items-center justify-center">
-                  {cartItems.length}
-                </span>
+                {cartItems && cartItems.length > 0 && (
+                  <span className="absolute top-0 right-0 text-xs font-bold text-white bg-[#db4444] rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartItems.length}
+                  </span>
+                )}
               </Link>
               <div
                 className="relative hover:bg-[#db4444] rounded-full w-10 h-10 flex justify-center items-center transition duration-300"

@@ -4,6 +4,8 @@ import Header from "./components/Header/Header";
 import TopCheat from "./components/TopCheat/TopCheat";
 import Footer from "./components/Footer/Footer";
 import { CartProvider } from "./context/CartContext";
+import { WishlistProvider } from "./context/WishlistContext";
+import { ToastContainer } from "react-toastify";
 
 const poppins = localFont({
   src: "./fonts/Poppins/Poppins-Regular.ttf",
@@ -26,14 +28,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${inter.variable} antialiased `}>
-        <CartProvider>
-          <TopCheat />
-
-          <Header />
-
-          {children}
-          <Footer />
-        </CartProvider>
+      <ToastContainer />
+        <WishlistProvider>
+          <CartProvider>
+            <TopCheat />
+            <Header />
+            {children}
+            <Footer />
+          </CartProvider>
+        </WishlistProvider>
       </body>
     </html>
   );

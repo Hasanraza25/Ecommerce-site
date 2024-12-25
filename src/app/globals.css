@@ -31,6 +31,10 @@ body {
   @apply border-b border-b-[#808080] pb-1 text-lg text-[#999999] font-medium outline-none w-full;
 }
 
+.red-button{
+  @apply bg-[#db4444] text-white rounded-[5px] text-sm sm:text-base transition-all duration-300 ease-in-out transform hover:bg-white  hover:text-black hover:scale-105 hover:shadow-lg hover:border hover:border-[#808080];
+}
+
 @media (min-width: 1366px) and (max-width: 1450px) {
   .px-20.hero-content {
     padding: 0 4rem;

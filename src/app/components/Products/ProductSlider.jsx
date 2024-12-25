@@ -7,7 +7,7 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 const ProductSlider = ({ products }) => {
   const [scrollPosition, setScrollPosition] = useState(0); // Current scroll position
   const [visibleCards, setVisibleCards] = useState(4); // Default to 4 cards for desktop
-  const cardWidth = 350; // Width of each card in pixels
+  const cardWidth = 250; // Width of each card in pixels
   const [loopedProducts, setLoopedProducts] = useState([
     ...products,
     ...products,
@@ -81,8 +81,7 @@ const ProductSlider = ({ products }) => {
           {loopedProducts.map((product, index) => (
             <div
               key={index}
-              className="flex-shrink-0"
-              style={{ width: `${cardWidth}px` }} // Each card takes up exactly cardWidth
+              className="flex-shrink-0 md:px-8"
             >
               <ProductCard product={product} />
             </div>

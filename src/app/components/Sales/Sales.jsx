@@ -31,7 +31,7 @@ const Sales = () => {
       </div>
 
       <div className="text-center mt-6 md:mt-10 mb-8">
-        <button className="bg-[#db4444] hover:bg-[#fa4545] py-3 px-6 sm:py-4 sm:px-10 text-white rounded-[5px] text-sm sm:text-base">
+        <button className="red-button py-3 px-6 sm:py-4 sm:px-10 ">
           View All Products
         </button>
       </div>

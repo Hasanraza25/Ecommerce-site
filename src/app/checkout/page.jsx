@@ -1,7 +1,10 @@
+"use client";
 import Image from "next/image";
 import React from "react";
+import { useCart } from "../context/CartContext";
 
 const CheckOut = () => {
+  const { cartItems, calculateTotal } = useCart();
   return (
     <div className="container px-8 mx-auto overflow-hidden my-20">
       <h4 className="text-lg text-[#808080] mb-10">
@@ -89,40 +92,37 @@ const CheckOut = () => {
                     />
                   </svg>
                 </label>
-                <p className="text-black text-base">Save this information for faster check-out next time</p>
+                <p className="text-black text-base">
+                  Save this information for faster check-out next time
+                </p>
               </div>
             </ul>
             <div className="flex flex-col space-y-10 w-full lg:w-1/2 mdd:w-full text-lg">
               <div className="space-y-10 ">
-                <div className="flex justify-between items-center">
-                  <div className="flex space-x-7 items-center ">
-                    <Image
-                      src="/images/product-game.svg"
-                      alt=""
-                      width={49}
-                      height={42}
-                    />
-                    <p>LCD Monitor</p>
-                  </div>
-                  <p>$650</p>
-                </div>
-                <div className="flex justify-between items-center">
-                  <div className="flex space-x-7 items-center">
-                    <Image
-                      src="/images/lcd.svg"
-                      alt=""
-                      width={49}
-                      height={42}
-                    />
-                    <p>H1 Gamepad</p>
-                  </div>
-                  <p>$1100</p>
-                </div>
+                {cartItems.map((item, index) => {
+                  return (
+                    <div
+                      className="flex justify-between items-center"
+                      key={index}
+                    >
+                      <div className="flex space-x-7 items-center ">
+                        <Image
+                          src={item.image}
+                          alt=""
+                          width={49}
+                          height={42}
+                        />
+                        <p>{item.name}</p>
+                      </div>
+                      <p>${item.discountedPrice * item.quantity}</p>
+                    </div>
+                  );
+                })}
               </div>
               <div className="space-y-5">
                 <div className="flex justify-between tracking-wide">
                   <p>Subtotal:</p>
-                  <p>$1750</p>
+                  <p>${calculateTotal()}</p>
                 </div>
                 <hr />
 
@@ -133,7 +133,7 @@ const CheckOut = () => {
                 <hr />
                 <div className="flex justify-between tracking-wide">
                   <p>Total:</p>
-                  <p>$1750</p>
+                  <p>${calculateTotal()}</p>
                 </div>
               </div>
               <div className="space-y-4 tracking-wide">
@@ -156,19 +156,16 @@ const CheckOut = () => {
                       src="/images/icons/visa-icon.svg"
                       alt="Visa"
                       class=" mr-2"
-   
                     />
                     <img
                       src="/images/icons/master-card.svg"
                       alt="Visa"
                       class="mr-2"
-
                     />
                     <img
                       src="/images/icons/paypal-icon.svg"
                       alt="Visa"
                       class="mr-2"
-    
                     />
                   </div>
                 </div>

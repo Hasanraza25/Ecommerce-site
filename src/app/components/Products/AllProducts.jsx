@@ -22,7 +22,7 @@ const AllProducts = () => {
         </div>
         <AllProductSlider products={ourProducts} />
         <div className="text-center mb-10">
-          <button className="bg-[#db4444] hover:bg-[#fa4545] py-4 px-10 text-white rounded-[5px]">
+          <button className="red-button py-4 px-10">
             Explore Our Products
           </button>
         </div>

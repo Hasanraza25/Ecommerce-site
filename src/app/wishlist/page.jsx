@@ -1,34 +1,25 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import ProductCard from "../components/Products/ProductCard";
+import { useWishlist } from "../context/WishlistContext";
+import Link from "next/link";
+import { useCart } from "../context/CartContext";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Wishlist = () => {
-  const productsA = [
-    {
-      image: "/images/best-sell/bag.svg",
-      name: "Gucci duffle bag",
-      discountedPrice: 960,
-      originalPrice: 1160,
-      discount: "35",
-    },
+  const { wishlistItems } = useWishlist();
+  const { addToCart } = useCart();
 
-    {
-      image: "/images/best-sell/cooler.svg",
-      name: "RGB liquid CPU Cooler",
-      discountedPrice: 1960,
-    },
-    {
-      image: "/images/gamepad.svg",
-      name: "GP11 Shooter USB Gamepad ",
-      discountedPrice: 550,
-    },
-
-    {
-      image: "/images/jacket.svg",
-      name: "Quilted Satin Jacket ",
-      discountedPrice: 750,
-    },
-  ];
+  const handleAddToCart = (product) => {
+    wishlistItems.forEach((item) => {
+      addToCart(item);
+    });
+    toast.success("Items Added to Cart!", {
+      autoClose: 2000,
+      closeButton: false,
+    });
+  };
 
   const productsB = [
     {
@@ -113,11 +104,17 @@ const Wishlist = () => {
     <>
       <div className="container mx-auto flex flex-col px-8 overflow-hidden my-10">
         <div className="container flex mt-10 items-center font-bold justify-between flex-col md:flex-row">
-          <h1 className="text-xl font-medium">Wishlist &#40;4&#41;</h1>
+          <h1 className="text-xl font-medium">
+            Wishlist &#40;{wishlistItems.length}&#41;
+          </h1>
           <div className="mt-10 md:mt-0">
-            <button className="bg-white py-4 px-12 text-black rounded-[5px] border border-[#808080]">
-              Move All To Bag
-            </button>
+            {wishlistItems && wishlistItems.length > 0 && (
+              <Link href={"/cart"} onClick={handleAddToCart}>
+                <button className="bg-white py-4 px-12 text-black rounded-[5px] border border-[#808080] transition-all duration-300 ease-in-out transform hover:bg-[#db4444] hover:text-white hover:scale-105 hover:shadow-lg hover:border-transparent">
+                  Move All To Bag
+                </button>
+              </Link>
+            )}
           </div>
         </div>
         <div
@@ -128,12 +125,13 @@ const Wishlist = () => {
           onMouseUp={handleMouseUp}
           onMouseMove={handleMouseMove}
           style={{
-            cursor: isMobileOrTablet ? "grab" : "default", // Grab cursor only on mobile/tablet
+            cursor: isMobileOrTablet ? "grab" : "default",
           }}
         >
-          <div className="flex justify-between">
-            {productsA.map((product, index) => (
-              <div key={index} className=" min-w-[20rem]">
+          {wishlistItems && wishlistItems.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+             { wishlistItems.map((product, index) => (
+              <div key={index} className="md:min-w-[20rem] mx-auto">
                 <ProductCard
                   product={product}
                   reviewsVisible={false}
@@ -142,8 +140,30 @@ const Wishlist = () => {
                   isTrashVisible={true}
                 />
               </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center h-full pb-10 rounded-lg">
+              <img
+                src="/images/empty-wishlist.svg"
+                alt="Empty Wishlist"
+                className="w-60 h-60 mb-6"
+              />
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+                Oops! Your wishlist is empty 💔
+              </h2>
+              <p className="text-gray-600 text-center text-sm md:text-base max-w-md mb-6">
+                It seems like you haven’t added any favorites yet. Don’t miss
+                out on items you’ll love—start adding to your wishlist now!
+              </p>
+              <Link
+                href="/"
+                className="px-6 py-3 bg-[#db4444] hover:bg-[#fa4545]  text-white font-semibold rounded-full shadow-md transition-all duration-300"
+              >
+                💖 Explore & Add to Wishlist
+              </Link>
+            </div>
+          )}
         </div>
         <div className="container flex mt-32 items-center font-bold justify-between flex-col md:flex-row">
           <div className="heading flex items-center">
@@ -153,7 +173,7 @@ const Wishlist = () => {
             </h4>
           </div>
           <div className="mt-10 md:mt-0">
-            <button className="bg-white py-4 px-12 text-black rounded-[5px] border border-[#808080]">
+            <button className=" py-4 px-12 text-black rounded-[5px] border border-[#808080] transition-all duration-300 ease-in-out transform hover:bg-[#db4444] hover:text-white hover:scale-105 hover:shadow-lg hover:border-transparent">
               See All
             </button>
           </div>
@@ -169,9 +189,9 @@ const Wishlist = () => {
             cursor: isMobileOrTablet ? "grab" : "default", // Grab cursor only on mobile/tablet
           }}
         >
-          <div className="flex justify-between">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {productsB.map((product, index) => (
-              <div key={index} className=" min-w-[20rem]">
+              <div key={index} className="md:min-w-[20rem] mx-auto">
                 <ProductCard product={product} isHeartVisible={false} />
               </div>
             ))}
