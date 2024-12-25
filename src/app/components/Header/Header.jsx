@@ -118,13 +118,15 @@ const Header = () => {
               <div className="header-icons flex justify-between px-5 space-x-3">
                 <Link
                   href="/wishlist"
-                  className="relative hover:bg-[#db4444] rounded-full w-11 h-11 text-center flex justify-center items-center"
+                  className={`relative hover:bg-[#db4444] ${
+                    currentPath === "/wishlist" ? "bg-[#db4444]" : ""
+                  } rounded-full w-11 h-11 text-center flex justify-center items-center`}
                   onMouseEnter={() => setIsWishlistHovered(true)}
                   onMouseLeave={() => setIsWishlistHovered(false)}
                 >
                   <Image
                     src={
-                      isWishlistHovered
+                      isWishlistHovered || currentPath === '/wishlist'
                         ? "/images/wishlist-white.svg"
                         : "/images/wishlist.svg"
                     }
@@ -132,8 +134,6 @@ const Header = () => {
                     width={35}
                     height={30}
                     className="mx-3"
-                    onMouseEnter={() => setIsWishlistHovered(true)}
-                    onMouseLeave={() => setIsWishlistHovered(false)}
                   />
                   {wishlistItems && wishlistItems.length > 0 && (
                     <span className="absolute top-0 right-0 text-xs font-bold text-white bg-[#db4444] rounded-full w-5 h-5 flex items-center justify-center">
@@ -143,13 +143,15 @@ const Header = () => {
                 </Link>
                 <Link
                   href="/cart"
-                  className="relative hover:bg-[#db4444] rounded-full w-11 h-11 text-center flex justify-center items-center"
+                  className={`relative hover:bg-[#db4444] ${
+                    currentPath === "/cart" ? "bg-[#db4444]" : ""
+                  } rounded-full w-11 h-11 text-center flex justify-center items-center`}
                   onMouseEnter={() => setIsCartHovered(true)}
                   onMouseLeave={() => setIsCartHovered(false)}
                 >
                   <Image
                     src={
-                      isCartHovered
+                      isCartHovered || currentPath === '/cart'
                         ? "/images/cart-white.svg"
                         : "/images/cart.svg"
                     }
@@ -167,7 +169,7 @@ const Header = () => {
                 </Link>
 
                 <div
-                  className="relative hover:bg-[#db4444] rounded-full w-10 h-10 flex justify-center items-center transition duration-300 dropdown-container"
+                  className="relative hover:bg-[#db4444] rounded-full w-11 h-11 flex justify-center items-center transition duration-300 dropdown-container"
                   ref={dropdownRef}
                   onMouseEnter={() => setIsUserHovered(true)}
                   onMouseLeave={() => setIsUserHovered(false)}
@@ -262,13 +264,15 @@ const Header = () => {
             <div className="header-icons flex justify-between px-5 pt-2">
               <Link
                 href="/wishlist"
-                className="relative hover:bg-[#db4444] rounded-full w-11 h-11 text-center flex justify-center items-center"
+                className={`relative hover:bg-[#db4444] ${
+                  currentPath === "/wishlist" ? "bg-[#db4444]" : ""
+                } rounded-full w-11 h-11 text-center flex justify-center items-center`}
                 onMouseEnter={() => setIsWishlistHovered(true)}
                 onMouseLeave={() => setIsWishlistHovered(false)}
               >
                 <Image
                   src={
-                    isWishlistHovered
+                    isWishlistHovered  || currentPath === '/wishlist'
                       ? "/images/wishlist-white.svg"
                       : "/images/wishlist.svg"
                   }
@@ -287,13 +291,15 @@ const Header = () => {
               </Link>
               <Link
                 href="/cart"
-                className="relative hover:bg-[#db4444] rounded-full w-11 h-11 text-center flex justify-center items-center"
+                className={`relative hover:bg-[#db4444] ${
+                  currentPath === "/cart" ? "bg-[#db4444]" : ""
+                } rounded-full w-11 h-11 text-center flex justify-center items-center`}
                 onMouseEnter={() => setIsCartHovered(true)}
                 onMouseLeave={() => setIsCartHovered(false)}
               >
                 <Image
                   src={
-                    isCartHovered
+                    isCartHovered || currentPath === '/cart'
                       ? "/images/cart-white.svg"
                       : "/images/cart.svg"
                   }
@@ -309,7 +315,7 @@ const Header = () => {
                 )}
               </Link>
               <div
-                className="relative hover:bg-[#db4444] rounded-full w-10 h-10 flex justify-center items-center transition duration-300"
+                className="relative hover:bg-[#db4444] rounded-full w-11 h-11 flex justify-center items-center transition duration-300"
                 onMouseEnter={() => setIsUserHovered(true)}
                 onMouseLeave={() => setIsUserHovered(false)}
               >

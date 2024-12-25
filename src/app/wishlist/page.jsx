@@ -9,16 +9,28 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Wishlist = () => {
   const { wishlistItems } = useWishlist();
-  const { addToCart } = useCart();
+  const { cartItems, addToCart } = useCart();
 
-  const handleAddToCart = (product) => {
-    wishlistItems.forEach((item) => {
-      addToCart(item);
-    });
-    toast.success("Items Added to Cart!", {
-      autoClose: 2000,
-      closeButton: false,
-    });
+  const allItemsMovedToCart = wishlistItems.every((item) =>
+    cartItems.some((cartItem) => cartItem.id === item.id)
+  );
+
+  const handleAddToCart = () => {
+    const itemsToAdd = wishlistItems.filter(
+      (item) => !cartItems.some((cartItem) => cartItem.id === item.id)
+    );
+    if (itemsToAdd.length > 0) {
+      itemsToAdd.forEach((item) => addToCart(item));
+      toast.success("Items Added to Cart!", {
+        autoClose: 2000,
+        closeButton: true,
+      });
+    } else {
+      toast.info("All items are already in the cart.", {
+        autoClose: 2000,
+        closeButton: true,
+      });
+    }
   };
 
   const productsB = [
@@ -109,11 +121,13 @@ const Wishlist = () => {
           </h1>
           <div className="mt-10 md:mt-0">
             {wishlistItems && wishlistItems.length > 0 && (
-              <Link href={"/cart"} onClick={handleAddToCart}>
-                <button className="bg-white py-4 px-12 text-black rounded-[5px] border border-[#808080] transition-all duration-300 ease-in-out transform hover:bg-[#db4444] hover:text-white hover:scale-105 hover:shadow-lg hover:border-transparent">
-                  Move All To Bag
-                </button>
-              </Link>
+              <button
+                className="bg-white py-4 px-12 text-black rounded-[5px] border border-[#808080] transition-all duration-300 ease-in-out transform hover:bg-[#db4444] hover:text-white hover:scale-105 hover:shadow-lg hover:border-transparent"
+                onClick={handleAddToCart}
+                disabled={allItemsMovedToCart}
+              >
+                {allItemsMovedToCart ? "All Items in Bag" : "Move All To Bag"}
+              </button>
             )}
           </div>
         </div>
@@ -130,16 +144,16 @@ const Wishlist = () => {
         >
           {wishlistItems && wishlistItems.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-             { wishlistItems.map((product, index) => (
-              <div key={index} className="md:min-w-[20rem] mx-auto">
-                <ProductCard
-                  product={product}
-                  reviewsVisible={false}
-                  isHeartVisible={false}
-                  isEyeVisible={false}
-                  isTrashVisible={true}
-                />
-              </div>
+              {wishlistItems.map((product, index) => (
+                <div key={index} className="md:min-w-[20rem] mx-auto">
+                  <ProductCard
+                    product={product}
+                    reviewsVisible={false}
+                    isHeartVisible={false}
+                    isEyeVisible={false}
+                    isTrashVisible={true}
+                  />
+                </div>
               ))}
             </div>
           ) : (

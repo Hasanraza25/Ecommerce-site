@@ -37,6 +37,10 @@ const ProductCard = ({
   );
 
   useEffect(() => {
+    setIsAddedToCart(cartItems.some((item) => item.id === product.id));
+  }, [cartItems, product.id]);
+
+  useEffect(() => {
     if (wishlistItems.some((item) => item.id === product.id)) {
       setIsHeartClicked(true);
     }
