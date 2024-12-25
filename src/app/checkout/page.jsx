@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const CheckOut = () => {
@@ -8,12 +9,12 @@ const CheckOut = () => {
         <span className="text-black"> CheckOut</span>
       </h4>
       <div className="container">
-        <h1 className="text-3xl font-medium tracking-wide py-5">
+        <h1 className="text-3xl font-medium tracking-wide py-5 text-start mdd:text-center">
           Billing Details
         </h1>
         <form action="">
-          <div className="flex justify-between mt-4 w-full space-x-20">
-            <ul className="text-[#999999] text-sm tracking-wide space-y-4 w-full">
+          <div className="flex mdd:flex-wrap justify-between mdd:justify-center mt-4 w-full lg:space-x-20 mdd:space-x-0 mdd:space-y-20">
+            <ul className="text-[#999999] text-sm tracking-wide space-y-4 w-full lg:w-1/2 mdd:w-full">
               <li className="space-y-1 w-full">
                 <h5>First Name</h5>
                 <input
@@ -88,12 +89,118 @@ const CheckOut = () => {
                     />
                   </svg>
                 </label>
-                <p>Save this information for faster check-out next time</p>
+                <p className="text-black text-base">Save this information for faster check-out next time</p>
               </div>
             </ul>
-           <div>
-            
-           </div>
+            <div className="flex flex-col space-y-10 w-full lg:w-1/2 mdd:w-full text-lg">
+              <div className="space-y-10 ">
+                <div className="flex justify-between items-center">
+                  <div className="flex space-x-7 items-center ">
+                    <Image
+                      src="/images/product-game.svg"
+                      alt=""
+                      width={49}
+                      height={42}
+                    />
+                    <p>LCD Monitor</p>
+                  </div>
+                  <p>$650</p>
+                </div>
+                <div className="flex justify-between items-center">
+                  <div className="flex space-x-7 items-center">
+                    <Image
+                      src="/images/lcd.svg"
+                      alt=""
+                      width={49}
+                      height={42}
+                    />
+                    <p>H1 Gamepad</p>
+                  </div>
+                  <p>$1100</p>
+                </div>
+              </div>
+              <div className="space-y-5">
+                <div className="flex justify-between tracking-wide">
+                  <p>Subtotal:</p>
+                  <p>$1750</p>
+                </div>
+                <hr />
+
+                <div className="flex justify-between tracking-wide">
+                  <p>Shipping:</p>
+                  <p>Free</p>
+                </div>
+                <hr />
+                <div className="flex justify-between tracking-wide">
+                  <p>Total:</p>
+                  <p>$1750</p>
+                </div>
+              </div>
+              <div className="space-y-4 tracking-wide">
+                <div className="flex justify-between items-center">
+                  <input
+                    type="radio"
+                    id="creditCard"
+                    name="paymentMethod"
+                    className="w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-500"
+                    defaultChecked
+                  />
+                  <label
+                    htmlFor="creditCard"
+                    className="ml-3 my-3 text-lg font-medium text-gray-800"
+                  >
+                    Credit Card
+                  </label>
+                  <div class="ml-auto flex flex-wrap items-center justify-end lg:space-x-4">
+                    <img
+                      src="/images/icons/visa-icon.svg"
+                      alt="Visa"
+                      class=" mr-2"
+   
+                    />
+                    <img
+                      src="/images/icons/master-card.svg"
+                      alt="Visa"
+                      class="mr-2"
+
+                    />
+                    <img
+                      src="/images/icons/paypal-icon.svg"
+                      alt="Visa"
+                      class="mr-2"
+    
+                    />
+                  </div>
+                </div>
+                <div className="flex space-x-3 items-center">
+                  <input
+                    type="radio"
+                    id="paypal"
+                    name="paymentMethod"
+                    className="w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-500"
+                  />
+                  <label
+                    htmlFor="paypal"
+                    className="ml-3 text-lg font-medium text-gray-800"
+                  >
+                    PayPal
+                  </label>
+                </div>
+              </div>
+              <div className="flex flex-wrap lg:space-x-4 space-x-0 lg:space-y-0 space-y-5 justify-start items-center mdd:w-full">
+                <input
+                  type="text"
+                  placeholder="Coupon Code"
+                  className="border-2 border-black rounded-[5px] pl-5 pr-20 py-3 lg:w-auto w-full font-medium text-[#808080] outline-none"
+                />
+                <button className="bg-[#db4444] hover:bg-[#fa4545] py-3 px-12 lg:w-auto w-full text-white rounded-[5px]">
+                  Apply Coupon
+                </button>
+              </div>
+              <button className="bg-[#db4444] hover:bg-[#fa4545] py-3 px-12 lg:w-auto w-full text-white rounded-[5px]">
+                Place Order
+              </button>
+            </div>
           </div>
         </form>
       </div>
