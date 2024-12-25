@@ -1,41 +1,12 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
+import { products } from "@/app/data/products";
 
 const BestSellProducts = () => {
-  const products = [
-    {
-      image: "/images/best-sell/coat.svg",
-      name: "The north coat",
-      discountedPrice: 260,
-      originalPrice: 360,
-      rating: 5,
-      buyers: 65,
-    },
-    {
-      image: "/images/best-sell/bag.svg",
-      name: "Gucci duffle bag",
-      discountedPrice: 960,
-      originalPrice: 1160,
-      rating: 4.5,
-      buyers: 65,
-    },
-    {
-      image: "/images/best-sell/cooler.svg",
-      name: "RGB liquid CPU Cooler",
-      discountedPrice: 160,
-      originalPrice: 170,
-      rating: 4.5,
-      buyers: 65,
-    },
-    {
-      image: "/images/best-sell/book-shelf.svg",
-      name: "Small BookSelf",
-      discountedPrice: 360,
-      rating: 5,
-      buyers: 65,
-    },
-  ];
+  const bestSellProducts = products.filter((product) =>
+    product.categories.includes("best-sell")
+  );
 
   const sliderRef = useRef(null);
 
@@ -111,8 +82,8 @@ const BestSellProducts = () => {
             cursor: isMobileOrTablet ? "grab" : "default", // Grab cursor only on mobile/tablet
           }}
         >
-          <div className="flex justify-between">
-            {products.map((product, index) => (
+          <div className="flex justify-between flex-wrap">
+            {bestSellProducts.map((product, index) => (
               <div key={index} className=" min-w-[20rem]">
                 <ProductCard product={product} />
               </div>

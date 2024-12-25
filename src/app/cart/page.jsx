@@ -1,55 +1,19 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useCart } from "../context/CartContext";
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "LCD Monitor",
-      price: 650,
-      quantity: 1,
-      image: "/images/lcd-monitor.svg",
-    },
-    {
-      id: 2,
-      name: "Keyboard",
-      price: 120,
-      quantity: 1,
-      image: "/images/lcd-monitor.svg",
-    },
-    {
-      id: 3,
-      name: "Keyboard",
-      price: 120,
-      quantity: 1,
-      image: "/images/lcd-monitor.svg",
-    },
-    {
-      id: 4,
-      name: "Keyboard",
-      price: 120,
-      quantity: 1,
-      image: "/images/lcd-monitor.svg",
-    },
-  ]);
+  const { cartItems, calculateTotal, handleQuantityChange, removeFromCart } =
+    useCart();
+  const [removingItem, setRemovingItem] = useState(null);
 
-  const handleQuantityChange = (id, change) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + change) }
-          : item
-      )
-    );
-  };
-
-  const calculateTotal = () => {
-    const subtotal = cartItems.reduce(
-      (acc, item) => acc + item.price * item.quantity,
-      0
-    );
-    return subtotal;
+  const handleRemove = (id) => {
+    setRemovingItem(id);
+    setTimeout(() => {
+      removeFromCart(id);
+      setRemovingItem(null);
+    }, 300);
   };
 
   return (
@@ -72,7 +36,9 @@ const Cart = () => {
         {cartItems.map((item) => (
           <ul
             key={item.id}
-            className="grid md:grid-cols-4 grid-cols-1 text-center items-center gap-4 p-5 shadow-md bg-white"
+            className={`grid md:grid-cols-4 grid-cols-1 text-center items-center gap-4 p-5 shadow-md bg-white transition-transform duration-300 ${
+              removingItem === item.id ? "opacity-0 scale-90" : ""
+            }`}
             style={{ borderRadius: "0.3rem" }}
           >
             <li className="md:col-span-1 flex flex-col lg:flex-row lg:justify-start lg:pl-10 items-center gap-2 lg:space-x-3">
@@ -82,7 +48,7 @@ const Cart = () => {
                   alt={item.name}
                   className="h-16 w-16 object-contain rounded-md mx-auto"
                 />
-                <button className="absolute top-0 -left-2 text-white bg-[#db4444] rounded-full hover:bg-[#fa4545]">
+                <button className="absolute top-0 -left-2 text-white bg-[#db4444] rounded-full hover:bg-[#fa4545]" onClick={() => handleRemove(item.id)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-4 w-4"
@@ -107,7 +73,7 @@ const Cart = () => {
                 Price:
               </span>
               <span className="text-gray-600 font-semibold md:ml-2">
-                ${item.price}
+                ${item.discountedPrice}
               </span>
             </li>
 
@@ -143,7 +109,7 @@ const Cart = () => {
                 Subtotal:
               </span>
               <span className="text-gray-800 font-semibold md:ml-2">
-                ${item.price * item.quantity}
+                ${item.discountedPrice * item.quantity}
               </span>
             </li>
           </ul>

@@ -5,7 +5,7 @@ import {
   faEye as faEyeSolid,
   faStar,
   faStarHalfAlt,
-  faTrashCan
+  faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -15,6 +15,7 @@ import {
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useCart } from "@/app/context/CartContext";
 
 const ProductCard = ({
   product,
@@ -23,9 +24,14 @@ const ProductCard = ({
   isEyeVisible = true,
   isTrashVisible = false,
 }) => {
+  const { addToCart } = useCart();
   const [isHeartClicked, setIsHeartClicked] = useState(false);
   const [isEyeClicked, setIsEyeClicked] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+
+  const handleAddToCart = () => {
+    addToCart(product);
+  };
   const pathName = usePathname();
   return (
     <div className="flex-shrink-0 max-w-[19rem] min-w-[15rem] h-full rounded-lg relative mr-4 border-none cursor-pointer">
@@ -40,7 +46,7 @@ const ProductCard = ({
             -{product.discount}%
           </span>
         )}
-         {product.isNew && (
+        {product.isNew && (
           <span className="absolute top-2 left-2 bg-[#00ff66] text-white text-sm px-3 py-1 rounded">
             NEW
           </span>
@@ -58,9 +64,9 @@ const ProductCard = ({
         <div
           className={`bg-black text-white w-full text-center py-2 absolute bottom-0 ${
             isHovered ? "lg:block" : "lg:hidden"
-          } md:block sm:block`}
+          } md:block sm:block`}  onClick={handleAddToCart}
         >
-          <Link href="#">Add To Cart</Link>
+          <button>Add To Cart</button>
         </div>
 
         <div className="absolute top-4 right-2 flex flex-col space-y-2">
@@ -94,10 +100,7 @@ const ProductCard = ({
             <button
               className={`bg-white w-8 h-8 rounded-full flex items-center justify-center hover:text-red-500`}
             >
-              <FontAwesomeIcon
-                icon={faTrashCan}
-                className="text-[1.2rem]"
-              />
+              <FontAwesomeIcon icon={faTrashCan} className="text-[1.2rem]" />
             </button>
           )}
         </div>

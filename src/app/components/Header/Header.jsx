@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import AccountDropdown from "../AccountDropdown/AccountDropdown";
+import { useCart } from "@/app/context/CartContext";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,6 +14,7 @@ const Header = () => {
   const [isUserHovered, setIsUserHovered] = useState(false);
   const currentPath = usePathname();
   const dropdownRef = useRef(null);
+  const { cartItems } = useCart();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -57,8 +59,11 @@ const Header = () => {
       <header className="lg:pb-4 pb-2 pt-8 px-8 lg:border-b-2 mytext sticky top-0 bg-white z-40">
         <div className="container flex justify-between items-center mx-auto">
           <div className="text-white text-lg flex items-center lg:block">
-            <Link href="/" className="text-black text-[1.7rem] tracking-wide font-bold lg:ml-7">
-             Exculsive
+            <Link
+              href="/"
+              className="text-black text-[1.7rem] tracking-wide font-bold lg:ml-7"
+            >
+              Exculsive
             </Link>
           </div>
 
@@ -129,7 +134,9 @@ const Header = () => {
                 </Link>
                 <Link
                   href="/cart"
-                  className=" hover:bg-[#db4444] rounded-full w-11 h-11 text-center flex justify-center"
+                  className="relative hover:bg-[#db4444] rounded-full w-11 h-11 text-center flex justify-center items-center"
+                  onMouseEnter={() => setIsCartHovered(true)}
+                  onMouseLeave={() => setIsCartHovered(false)}
                 >
                   <Image
                     src={
@@ -141,10 +148,13 @@ const Header = () => {
                     width={35}
                     height={30}
                     className="mx-3"
-                    onMouseEnter={() => setIsCartHovered(true)}
-                    onMouseLeave={() => setIsCartHovered(false)}
                   />
+                  {/* Cart Count Badge */}
+                  <span className="absolute top-0 right-0 text-xs font-bold text-white bg-[#db4444] rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartItems.length}
+                  </span>
                 </Link>
+
                 <div
                   className="relative hover:bg-[#db4444] rounded-full w-10 h-10 flex justify-center items-center transition duration-300 dropdown-container"
                   ref={dropdownRef}
@@ -258,8 +268,10 @@ const Header = () => {
                 />
               </Link>
               <Link
-                href="/"
-                className=" hover:bg-[#db4444] rounded-full w-10 h-10 text-center flex justify-center"
+                href="/cart"
+                className="relative hover:bg-[#db4444] rounded-full w-11 h-11 text-center flex justify-center items-center"
+                onMouseEnter={() => setIsCartHovered(true)}
+                onMouseLeave={() => setIsCartHovered(false)}
               >
                 <Image
                   src={
@@ -271,9 +283,11 @@ const Header = () => {
                   width={35}
                   height={30}
                   className="mx-3"
-                  onMouseEnter={() => setIsCartHovered(true)}
-                  onMouseLeave={() => setIsCartHovered(false)}
                 />
+                {/* Cart Count Badge */}
+                <span className="absolute top-0 right-0 text-xs font-bold text-white bg-[#db4444] rounded-full w-5 h-5 flex items-center justify-center">
+                  {cartItems.length}
+                </span>
               </Link>
               <div
                 className="relative hover:bg-[#db4444] rounded-full w-10 h-10 flex justify-center items-center transition duration-300"

@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "./components/Header/Header";
 import TopCheat from "./components/TopCheat/TopCheat";
 import Footer from "./components/Footer/Footer";
+import { CartProvider } from "./context/CartContext";
 
 const poppins = localFont({
   src: "./fonts/Poppins/Poppins-Regular.ttf",
@@ -16,7 +17,6 @@ const inter = localFont({
   weight: "100 600 700 900",
 });
 
-
 export const metadata = {
   title: "Exclusive",
   description: "Ecommerce Website by Hasan Raza",
@@ -25,16 +25,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${poppins.variable} ${inter.variable} antialiased `}
-      >
-        <TopCheat />
+      <body className={`${poppins.variable} ${inter.variable} antialiased `}>
+        <CartProvider>
+          <TopCheat />
 
           <Header />
-     
 
-        {children}
-        <Footer />
+          {children}
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

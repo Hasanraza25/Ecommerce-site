@@ -52,7 +52,7 @@ const HomeCarousel = () => {
 
   return (
     <div
-      className="relative w-full h-auto flex flex-col justify-center mt-10 pb-10 overflow-hidden lg:mx-0 mx-auto bg-black"
+      className="relative w-full h-full flex flex-col justify-center mt-10 pb-10 overflow-hidden lg:mx-0 mx-auto bg-black"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
