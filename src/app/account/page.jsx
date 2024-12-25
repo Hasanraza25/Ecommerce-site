@@ -13,7 +13,7 @@ const AccountPage = () => {
         </h4>
       </div>
       <div className="flex ">
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col space-y-6">
           <div className="space-y-4">
             <h4 className="font-bold tracking-wider text-xl">Manage My Account</h4>
             <ul className="flex flex-col justify-end items-start ml-6 space-y-3">
