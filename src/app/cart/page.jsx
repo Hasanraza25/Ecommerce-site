@@ -48,7 +48,7 @@ const Cart = () => {
                   alt={item.name}
                   className="h-16 w-16 object-contain rounded-md mx-auto"
                 />
-                <button className="absolute top-0 -left-2 text-white bg-[#db4444] rounded-full hover:bg-[#fa4545]" onClick={() => handleRemove(item.id)}>
+                <button className="absolute top-0 -left-2 text-white bg-[#db4444] rounded-full hover:bg-[#fa4545]" >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-4 w-4"
