@@ -21,14 +21,14 @@ const Wishlist = () => {
     );
     if (itemsToAdd.length > 0) {
       itemsToAdd.forEach((item) => addToCart(item));
-      toast.success("Items Added to Cart!", {
+      toast.success("All Items added to Cart!", {
         autoClose: 2000,
-        closeButton: true,
+        closeButton: false,
       });
     } else {
-      toast.info("All items are already in the cart.", {
+      toast.info("All Items are already in the Cart.", {
         autoClose: 2000,
-        closeButton: true,
+        closeButton: false,
       });
     }
   };
