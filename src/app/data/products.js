@@ -1,5 +1,5 @@
 export const products = [
-  // Flash Sales
+  
   {
     id: 1,
     image: "/images/product-game.svg",
@@ -10,6 +10,9 @@ export const products = [
     rating: 4.5,
     buyers: 88,
     categories: ["flash"],
+    description:
+      "Ergonomically designed for comfort during long gaming sessions. A responsive controller with customizable buttons for an enhanced experience.",
+    stockStatus: 20, 
   },
   {
     id: 2,
@@ -21,6 +24,9 @@ export const products = [
     rating: 4,
     buyers: 122,
     categories: ["flash"],
+    description:
+      "A mechanical keyboard with RGB backlighting and customizable macros. Ideal for both gamers and professional typists.",
+    stockStatus: 15, 
   },
   {
     id: 3,
@@ -32,6 +38,9 @@ export const products = [
     rating: 5,
     buyers: 20,
     categories: ["flash"],
+    description:
+      "A high-definition display with vibrant colors and fast refresh rates. Perfect for gaming or professional work.",
+    stockStatus: 0, 
   },
   {
     id: 4,
@@ -43,94 +52,65 @@ export const products = [
     rating: 4.5,
     buyers: 75,
     categories: ["flash"],
-  },
-  {
-    id: 5,
-    image: "/images/chair.svg",
-    name: "Gamepad",
-    discountedPrice: 120,
-    originalPrice: 150,
-    discount: 40,
-    rating: 4.5,
-    buyers: 88,
-    categories: ["flash"],
-  },
-  {
-    id: 6,
-    image: "/images/product-keyboard.svg",
-    name: "Keyboard",
-    discountedPrice: 960,
-    originalPrice: 1050,
-    discount: 35,
-    rating: 4,
-    buyers: 52,
-    categories: ["flash"],
-  },
-  {
-    id: 7,
-    image: "/images/product-game.svg",
-    name: "Monitor",
-    discountedPrice: 370,
-    originalPrice: 400,
-    discount: 30,
-    rating: 5,
-    buyers: 30,
-    categories: ["flash"],
-  },
-  {
-    id: 8,
-    image: "/images/chair.svg",
-    name: "Chair",
-    discountedPrice: 375,
-    originalPrice: 500,
-    discount: 25,
-    rating: 4.5,
-    buyers: 114,
-    categories: ["flash"],
+    description:
+      "A comfortable ergonomic chair designed for long hours of use. Adjustable features to ensure maximum comfort.",
+    stockStatus: 30, 
   },
 
-  // Best Sell
+  
   {
     id: 9,
     image: "/images/best-sell/coat.svg",
-    name: "The north coat",
+    name: "The North Coat",
     discountedPrice: 260,
     originalPrice: 360,
     rating: 5,
     buyers: 65,
     categories: ["best-sell"],
+    description:
+      "A stylish and durable coat to keep you warm in cold weather. Made with premium materials for lasting comfort.",
+    stockStatus: 10, 
   },
   {
     id: 10,
     image: "/images/best-sell/bag.svg",
-    name: "Gucci duffle bag",
+    name: "Gucci Duffle Bag",
     discountedPrice: 960,
     originalPrice: 1160,
     rating: 4.5,
     buyers: 65,
     categories: ["best-sell"],
+    description:
+      "A luxury duffle bag crafted with high-quality leather. Perfect for travel with ample space and sleek design.",
+    stockStatus: 0, 
   },
   {
     id: 11,
     image: "/images/best-sell/cooler.svg",
-    name: "RGB liquid CPU Cooler",
+    name: "RGB Liquid CPU Cooler",
     discountedPrice: 160,
     originalPrice: 170,
     rating: 4.5,
     buyers: 65,
     categories: ["best-sell"],
+    description:
+      "An efficient liquid cooler with customizable RGB lighting. Ensures your CPU stays cool during intense usage.",
+    stockStatus: 25, 
   },
   {
     id: 12,
     image: "/images/best-sell/book-shelf.svg",
-    name: "Small BookSelf",
+    name: "Small Bookshelf",
     discountedPrice: 360,
     rating: 5,
     buyers: 65,
     categories: ["best-sell"],
+    description:
+      "A compact bookshelf perfect for organizing small spaces. Simple yet elegant design to suit any modern interior.",
+    stockStatus: 50, 
   },
 
-  // Our Products
+  
   {
     id: 13,
     image: "/images/dog-food.svg",
@@ -139,6 +119,9 @@ export const products = [
     rating: 3,
     buyers: 35,
     categories: ["our-products"],
+    description:
+      "Nutrient-rich dry food formulated for specific dog breeds. Provides balanced nutrition to promote health and vitality.",
+    stockStatus: 0, 
   },
   {
     id: 14,
@@ -148,6 +131,9 @@ export const products = [
     rating: 4,
     buyers: 95,
     categories: ["our-products"],
+    description:
+      "A versatile DSLR camera offering high-quality imaging. Equipped with advanced features for professional photographers.",
+    stockStatus: 5, 
   },
   {
     id: 15,
@@ -157,15 +143,21 @@ export const products = [
     rating: 5,
     buyers: 325,
     categories: ["our-products"],
+    description:
+      "A powerful gaming laptop with full HD display and fast processing speeds. Perfect for gaming, content creation, and multitasking.",
+    stockStatus: 50, 
   },
   {
     id: 16,
     image: "/images/products.svg",
-    name: "Curology Product Set ",
+    name: "Curology Product Set",
     discountedPrice: 500,
     rating: 4,
     buyers: 145,
     categories: ["our-products"],
+    description:
+      "A complete skincare set from Curology, tailored for your skin needs. Includes prescription-strength formulas for clear and healthy skin.",
+    stockStatus: 25, 
   },
   {
     id: 17,
@@ -176,6 +168,9 @@ export const products = [
     buyers: 65,
     isNew: true,
     categories: ["our-products"],
+    description:
+      "A fun and safe electric car designed for children. Features easy controls and a durable build for outdoor play.",
+    stockStatus: 0, 
   },
   {
     id: 18,
@@ -185,6 +180,9 @@ export const products = [
     rating: 5,
     buyers: 35,
     categories: ["our-products"],
+    description:
+      "High-performance soccer cleats designed for young athletes. Lightweight and flexible to support fast movements on the field.",
+    stockStatus: 10, 
   },
   {
     id: 19,
@@ -195,6 +193,9 @@ export const products = [
     buyers: 55,
     isNew: true,
     categories: ["our-products"],
+    description:
+      "A precision gamepad designed for shooter games. Features a responsive layout and comfortable grip for extended play.",
+    stockStatus: 15, 
   },
   {
     id: 20,
@@ -204,59 +205,8 @@ export const products = [
     rating: 4.5,
     buyers: 55,
     categories: ["our-products"],
-  },
-  {
-    id: 21,
-    image: "/images/lcd.svg",
-    name: "Monitor",
-    discountedPrice: 370,
-    rating: 5,
-    buyers: 20,
-    categories: ["flash", "our-products"],
-  },
-  {
-    id: 22,
-    image: "/images/chair.svg",
-    name: "Chair",
-    discountedPrice: 375,
-    rating: 4.5,
-    buyers: 75,
-    categories: ["flash", "our-products"],
-  },
-  {
-    id: 23,
-    image: "/images/gamepad.svg",
-    name: "Gamepad",
-    discountedPrice: 120,
-    rating: 4.5,
-    buyers: 88,
-    categories: ["flash", "our-products"],
-  },
-  {
-    id: 24,
-    image: "/images/product-keyboard.svg",
-    name: "Keyboard",
-    discountedPrice: 960,
-    rating: 4,
-    buyers: 52,
-    categories: ["flash", "our-products"],
-  },
-  {
-    id: 25,
-    image: "/images/lcd.svg",
-    name: "Monitor",
-    discountedPrice: 370,
-    rating: 5,
-    buyers: 30,
-    categories: ["flash", "our-products"],
-  },
-  {
-    id: 26,
-    image: "/images/camera.svg",
-    name: "CANON EOS DSLR Camera",
-    discountedPrice: 360,
-    rating: 4,
-    buyers: 95,
-    categories: ["our-products"],
+    description:
+      "A stylish quilted satin jacket for casual and semi-formal occasions. Soft and comfortable with a modern look.",
+    stockStatus: 0, 
   },
 ];
