@@ -26,6 +26,10 @@ const Header = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
+  const updateDropdown = (update) => {
+    setDropdownOpen(update);
+  }
+
   const handleClickOutside = (event) => {
     // Check if the clicked element is outside the dropdown container
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -126,7 +130,7 @@ const Header = () => {
                 >
                   <Image
                     src={
-                      isWishlistHovered || currentPath === '/wishlist'
+                      isWishlistHovered || currentPath === "/wishlist"
                         ? "/images/wishlist-white.svg"
                         : "/images/wishlist.svg"
                     }
@@ -151,7 +155,7 @@ const Header = () => {
                 >
                   <Image
                     src={
-                      isCartHovered || currentPath === '/cart'
+                      isCartHovered || currentPath === "/cart"
                         ? "/images/cart-white.svg"
                         : "/images/cart.svg"
                     }
@@ -269,10 +273,11 @@ const Header = () => {
                 } rounded-full w-11 h-11 text-center flex justify-center items-center`}
                 onMouseEnter={() => setIsWishlistHovered(true)}
                 onMouseLeave={() => setIsWishlistHovered(false)}
+                onClick={() => setMenuOpen(false)}
               >
                 <Image
                   src={
-                    isWishlistHovered  || currentPath === '/wishlist'
+                    isWishlistHovered || currentPath === "/wishlist"
                       ? "/images/wishlist-white.svg"
                       : "/images/wishlist.svg"
                   }
@@ -296,10 +301,11 @@ const Header = () => {
                 } rounded-full w-11 h-11 text-center flex justify-center items-center`}
                 onMouseEnter={() => setIsCartHovered(true)}
                 onMouseLeave={() => setIsCartHovered(false)}
+                onClick={() => setMenuOpen(false)}
               >
                 <Image
                   src={
-                    isCartHovered || currentPath === '/cart'
+                    isCartHovered || currentPath === "/cart"
                       ? "/images/cart-white.svg"
                       : "/images/cart.svg"
                   }
@@ -334,7 +340,7 @@ const Header = () => {
                 </button>
                 {dropdownOpen && (
                   <div className="absolute top-12 right-0 shadow-lg border-none rounded-md w-72">
-                    <AccountDropdown />
+                    <AccountDropdown updateDropdown={updateDropdown} />
                   </div>
                 )}
               </div>

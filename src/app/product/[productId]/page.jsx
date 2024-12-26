@@ -83,7 +83,7 @@ const ProductDetail = ({ params }) => {
 
       <div className="flex flex-col md:flex-row sm:items-start sm:justify-center gap-10 w-full">
         <div className="flex lg:flex-row-reverse flex-col md:flex-row w-full md:w-1/2 mx-auto flex-shrink-0">
-          <div className="md:w-[500px] w-full h-[300px] md:h-full p-4 bg-[#f5f5f5] rounded-md lg:ml-10">
+          <div className="md:w-[500px] w-full h-[300px] md:h-[500px] p-4 bg-[#f5f5f5] rounded-md lg:ml-10">
             <img
               src={images[selectedImageIndex]}
               alt="Selected"

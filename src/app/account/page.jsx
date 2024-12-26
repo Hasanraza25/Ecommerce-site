@@ -12,11 +12,11 @@ const AccountPage = () => {
           Welcome! <span className="text-[#db4444]"> Hasan Raza</span>
         </h4>
       </div>
-      <div className="flex ">
+      <div className="flex text-lg">
         <div className="flex flex-col space-y-6">
           <div className="space-y-4">
             <h4 className="font-bold tracking-wider text-xl">Manage My Account</h4>
-            <ul className="flex flex-col justify-end items-start ml-6 space-y-3">
+            <ul className="flex flex-col justify-end items-start ml-8 space-y-3">
               <Link href={'#'}><li>My Profile</li></Link>
               <Link href={'#'}><li>Address Book</li></Link>
               <Link href={'#'}><li>My Payment Options</li></Link>
@@ -24,7 +24,7 @@ const AccountPage = () => {
           </div>
           <div className="space-y-4">
             <h4 className="font-bold tracking-wider text-xl">My Orders</h4>
-            <ul className="flex flex-col justify-end items-start ml-6 space-y-3">
+            <ul className="flex flex-col justify-end items-start ml-8 space-y-3">
             <Link href={'#'}><li>My Returns</li></Link>
             <Link href={'#'}><li>My Cancellations</li></Link>
             </ul>
