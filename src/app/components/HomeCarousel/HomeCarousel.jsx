@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 const HomeCarousel = () => {
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(2);
   const [touchStartX, setTouchStartX] = useState(0);
 
   const slides = [

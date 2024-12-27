@@ -1,14 +1,47 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import CountdownTimer from "../CountdownTimer/CountdownTimer";
 import ProductSlider from "../Products/ProductSlider";
-import { products } from "@/app/data/products";
+import { ClipLoader } from "react-spinners";
 
 const Sales = () => {
+  const [flashSaleProducts, setFlashSaleProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const targetDate = new Date("2024-12-31T00:00:00");
 
-  const flashSaleProducts = products.filter((product) =>
-    product.categories.includes("flash")
-  );
+  useEffect(() => {
+    const getFlashSaleProducts = async () => {
+      try {
+        const res = await fetch("/api/products");
+        const data = await res.json();
+        console.log(data);
+        const filteredProducts = data.products.filter((product) =>
+          product.categories.includes("flash")
+        );
+        setFlashSaleProducts(filteredProducts);
+      } catch (err) {
+        setError("Failed to fetch products!");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getFlashSaleProducts();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <ClipLoader color="#db4444" size={80} />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p className="text-center">{error}</p>;
+  }
 
   return (
     <div className="container mx-auto flex flex-col px-8 overflow-hidden">
@@ -31,7 +64,7 @@ const Sales = () => {
       </div>
 
       <div className="text-center mt-6 md:mt-10 mb-8">
-        <button className="red-button py-3 px-6 sm:py-4 sm:px-10 ">
+        <button className="red-button py-3 px-6 sm:py-4 sm:px-10">
           View All Products
         </button>
       </div>

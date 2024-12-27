@@ -1,11 +1,44 @@
-import React from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 import AllProductSlider from "./AllProductSlider";
-import { products } from "@/app/data/products";
+import { ClipLoader } from "react-spinners";
 
 const AllProducts = () => {
-  const ourProducts = products.filter((product) => 
-     product.categories.includes("our-products")
-  );
+  const [ourProducts, setOurProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const getOurProducts = async () => {
+      try {
+        const res = await fetch("/api/products");
+        const data = await res.json();
+
+        const filteredProducts = data.products.filter((product) =>
+          product.categories.includes("our-products")
+        );
+        setOurProducts(filteredProducts);
+      } catch (err) {
+        setError("Failed to Fetch Products!");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getOurProducts();
+  });
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <ClipLoader color="#db4444" size={80} />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p className="text-center">{error}</p>;
+  }
 
   return (
     <>

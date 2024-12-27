@@ -1,7 +1,6 @@
 "use client";
 import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
-import { products } from "@/app/data/products";
 import {
   faStar,
   faStarHalfAlt,
@@ -13,6 +12,7 @@ import { faHeart as faHeartOutline } from "@fortawesome/free-regular-svg-icons";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { ClipLoader } from "react-spinners";
 
 const ProductDetail = ({ params }) => {
   const { productId } = params;
@@ -22,28 +22,48 @@ const ProductDetail = ({ params }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [isHeartClicked, setIsHeartClicked] = useState(false);
-
- 
-  useEffect(() => {
-    const fetchedProduct = products.find(
-      (product) => product.id === parseInt(productId)
-    );
-    if (fetchedProduct) {
-      setProduct(fetchedProduct);
-      setIsAddedToCart(cartItems.some((item) => item.id === fetchedProduct.id));
-    }
-  }, [productId, cartItems]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchedProduct = products.find(
-      (product) => product.id === parseInt(productId)
-    );
-    if (wishlistItems.some((item) => item.id === fetchedProduct.id)) {
-      setIsHeartClicked(true);
-    }
-  }, [wishlistItems, productId]);
+    const fetchProduct = async () => {
+      try {
+        const res = await fetch(`/api/products/${productId}`);
+        if (!res.ok) throw new Error("Failed to fetch product!");
+        const data = await res.json();
+        setProduct(data.product);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProduct();
+  }, [productId]);
 
-  if (!product) return <div>Loading...</div>;
+  useEffect(() => {
+    if (product) {
+      setIsAddedToCart(cartItems.some((item) => item.id === product.id));
+    }
+  }, [product, cartItems]);
+
+  useEffect(() => {
+    if (product) {
+      setIsHeartClicked(wishlistItems.some((item) => item.id === product.id));
+    }
+  }, [wishlistItems, product]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <ClipLoader color="#db4444" size={80} />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p className="text-center">{error.message}</p>;
+  }
 
   const cartItem = cartItems.find((item) => item.id === product.id);
   const productQuantity = cartItem ? cartItem.quantity : 1;

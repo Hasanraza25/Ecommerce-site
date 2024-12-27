@@ -1,12 +1,33 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
-import { products } from "@/app/data/products";
+import { ClipLoader } from "react-spinners";
 
 const BestSellProducts = () => {
-  const bestSellProducts = products.filter((product) =>
-    product.categories.includes("best-sell")
-  );
+  const [bestSellProducts, setBestSellProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const getBestSellProducts = async () => {
+      try {
+        const res = await fetch("/api/products");
+        const data = await res.json();
+
+        const filteredProducts = data.products.filter((product) => {
+          return product.categories.includes("best-sell");
+        });
+
+        setBestSellProducts(filteredProducts);
+      } catch (err) {
+        setError("Fetching Product Failed!", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getBestSellProducts();
+  }, []);
+
 
   const sliderRef = useRef(null);
 
@@ -53,6 +74,19 @@ const BestSellProducts = () => {
     sliderRef.current.scrollLeft = scrollLeft.current - walk;
   };
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <ClipLoader color="#db4444" size={80} />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p className="text-center">{error}</p>;
+  }
+
+
   return (
     <>
       <div className="container mx-auto flex flex-col px-8 overflow-hidden">
@@ -65,9 +99,7 @@ const BestSellProducts = () => {
         <div className="flex mt-10 items-center font-bold justify-between flex-col md:flex-row">
           <h1 className="text-4xl font-semibold">Best Selling Products</h1>
           <div className="mb-10 mt-10 md:mt-0">
-            <button className="red-button py-4 px-12">
-              View All
-            </button>
+            <button className="red-button py-4 px-12">View All</button>
           </div>
         </div>
         {/* Slider Container */}
@@ -84,7 +116,7 @@ const BestSellProducts = () => {
         >
           <div className="flex justify-between">
             {bestSellProducts.map((product, index) => (
-              <div key={index} className="w-full" >
+              <div key={index} className="w-full">
                 <ProductCard product={product} />
               </div>
             ))}
