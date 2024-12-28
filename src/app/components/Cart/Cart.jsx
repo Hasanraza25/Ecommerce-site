@@ -151,7 +151,7 @@ export const Cart = () => {
                 </div>
               </div>
               <Link href={"/checkout"} className="mx-auto">
-                <button className="bg-[#db4444] hover:bg-[#fa4545] py-3 text-white rounded-[5px] lg:w-60 mdd:w-full mx-auto tracking-wider">
+                <button className="bg-[#db4444] hover:bg-[#fa4545] py-3 px-3 text-white rounded-[5px] lg:w-60 mdd:w-full mx-auto tracking-wider">
                   Proceed to Checkout
                 </button>
               </Link>
