@@ -1,7 +1,13 @@
 import Link from "next/link";
 import React from "react";
 
-const page = () => {
+export const metadata = {
+  title: "Contact Us - We're Here to Help!",
+  description:
+    "Get in touch with us for any queries, support, or feedback. Our team is available 24/7 to assist you. Fill out the form or call us directly to connect. We're always happy to hear from you at Exclusive!",
+};
+
+const ContactPage = () => {
   return (
     <div className="container md:px-12 px-5 mx-auto my-20 mb-32">
       <h4 className="text-lg text-[#808080] mb-10">
@@ -97,4 +103,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ContactPage;
