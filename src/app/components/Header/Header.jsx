@@ -26,9 +26,6 @@ const Header = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
-  const updateDropdown = (update) => {
-    setDropdownOpen(update);
-  }
 
   const handleClickOutside = (event) => {
     // Check if the clicked element is outside the dropdown container
@@ -340,7 +337,7 @@ const Header = () => {
                 </button>
                 {dropdownOpen && (
                   <div className="absolute top-12 right-0 shadow-lg border-none rounded-md w-72">
-                    <AccountDropdown updateDropdown={updateDropdown} />
+                    <AccountDropdown />
                   </div>
                 )}
               </div>
