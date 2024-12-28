@@ -7,11 +7,15 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 const ProductSlider = ({ products }) => {
   const [scrollPosition, setScrollPosition] = useState(0); // Current scroll position
   const [visibleCards, setVisibleCards] = useState(4); // Default to 4 cards for desktop
-  const cardWidth = 250; // Width of each card in pixels
+  const cardWidth = 270; // Width of each card in pixels
   const [loopedProducts, setLoopedProducts] = useState([
     ...products,
     ...products,
-  ]); // Initialize with extra first products
+  ]); // Initialize with extra products for looping
+
+  // Track touch events
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchMoveX, setTouchMoveX] = useState(0);
 
   useEffect(() => {
     const updateVisibleCards = () => {
@@ -32,7 +36,6 @@ const ProductSlider = ({ products }) => {
   const handleScrollRight = () => {
     setScrollPosition((prev) => prev + cardWidth);
 
-    // Append all products dynamically when nearing the end
     if (
       scrollPosition + visibleCards * cardWidth >=
       (loopedProducts.length - visibleCards) * cardWidth
@@ -42,15 +45,38 @@ const ProductSlider = ({ products }) => {
   };
 
   const handleScrollLeft = () => {
-    // Decrease scroll position
     setScrollPosition((prev) => prev - cardWidth);
 
-    // Prepend all products dynamically when at the start
     if (scrollPosition <= 0) {
       setLoopedProducts((prevProducts) => [...products, ...prevProducts]);
-      setScrollPosition(products.length * cardWidth); // Adjust scroll position to maintain continuity
+      setScrollPosition(products.length * cardWidth);
     }
   };
+
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.touches[0].clientX); // Record the starting touch point
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchMoveX(e.touches[0].clientX); // Update the touch position
+  };
+
+  const handleTouchEnd = () => {
+    const delta = touchStartX - touchMoveX; // Calculate the swipe distance
+
+    if (delta > 50) {
+      // Swipe left
+      handleScrollRight();
+    } else if (delta < -50) {
+      // Swipe right
+      handleScrollLeft();
+    }
+
+    // Reset touch states
+    setTouchStartX(0);
+    setTouchMoveX(0);
+  };
+
   return (
     <div className="relative flex flex-col h-full mb-20 mt-20 lg:mt-0">
       {/* Arrow Buttons */}
@@ -70,7 +96,12 @@ const ProductSlider = ({ products }) => {
       </div>
 
       {/* Slider Container */}
-      <div className="w-full mt-12 overflow-hidden relative">
+      <div
+        className="w-full mt-12 overflow-hidden relative"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <div
           className="flex transition-transform duration-300 ease-in-out"
           style={{
@@ -81,7 +112,7 @@ const ProductSlider = ({ products }) => {
           {loopedProducts.map((product, index) => (
             <div
               key={index}
-              className="flex-shrink-0 md:px-8"
+              className="flex-shrink-0 md:w-[20rem]"
             >
               <ProductCard product={product} />
             </div>
