@@ -4,7 +4,7 @@ const AboutMain = () => {
   return (
     <>
       <div className="flex flex-wrap gap-20 lg:gap-0 items-center justify-center">
-        <div className="flex flex-col lg:w-1/2 lg:mt-30 mt-20">
+        <div className="flex flex-col lg:w-1/2 sm:mt-20">
           <h1 className="text-5xl font-bold tracking-wider mb-10">Our Story</h1>
           <p className="tracking-wider lg:w-[80%] mb-10">
             Launced in 2015, Exclusive is South Asia’s premier online shopping

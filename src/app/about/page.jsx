@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import AboutMain from "../components/AboutMain/AboutMain";
 import AboutStats from "../components/AboutStats/AboutStats";
 import AboutTeam from "../components/AboutTeam/AboutTeam";
+import Services from "../components/Services/Services";
 
 const AboutPage = () => {
   return (
@@ -18,6 +19,7 @@ const AboutPage = () => {
       <AboutMain />
       <AboutStats />
       <AboutTeam />
+      <Services />
     </div>
   );
 };

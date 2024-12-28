@@ -40,7 +40,7 @@ const AboutStats = () => {
         {stats.map((stat, index) => (
           <div
             key={stat.id}
-            className={`flex flex-col items-center justify-center text-center border rounded-lg py-6 px-8 transition-all duration-300 cursor-pointer ${
+            className={`flex flex-col items-center justify-center text-center border rounded-lg py-6 px-8 transition-all duration-300 cursor-pointer w-72 ${
               isHovered === index ? "bg-[#db4444] scale-110 shadow-lg text-white" : ""
             }`}
             onMouseEnter={() => setIsHovered(index)}
