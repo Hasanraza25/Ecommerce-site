@@ -18,7 +18,7 @@ const Services = () => {
         <div className="flex flex-col items-center justify-center text-center mt-10 lg:mt-0 sm:mt-0">
           <Image src="/images/services/tick.svg" alt="" width={80} height={80} />
           <h3 className="mt-5 text-xl font-extrabold">MONEY BACK GUARANTEE</h3>
-          <p className="mt-3">We reurn money within 30 days</p>
+          <p className="mt-3">We return money within 30 days</p>
         </div>
       </div>
     </>

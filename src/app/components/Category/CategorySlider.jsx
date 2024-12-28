@@ -48,7 +48,7 @@ const CategorySlider = ({ products }) => {
   };
 
   return (
-    <div className="relative flex flex-col h-full mb-20 mt-20 lg:mt-0">
+    <div className="relative flex flex-col h-full mb-20 mt-20 lg:mt-0 ">
       {/* Arrow Buttons Centered Above Slider */}
       <div className="absolute md:-top-20 -top-10 right-0 flex justify-end w-full">
         <button
@@ -76,7 +76,7 @@ const CategorySlider = ({ products }) => {
       </div>
 
       {/* Slider Container */}
-      <div className="w-full mt-12 overflow-hidden relative">
+      <div className="w-full mt-12  relative">
         {/* Cards Container */}
         <div
           className="flex transition-transform duration-300"
@@ -84,7 +84,7 @@ const CategorySlider = ({ products }) => {
         >
           {products.map((product, index) => (
             <div
-              className="flex flex-col border hover:border-none hover:bg-[#db4444] hover:text-white rounded-md items-center mx-5 px-16 py-8 cursor-pointer transition-all duration-300 w-56"
+              className="flex flex-col border hover:border-none hover:bg-[#db4444] hover:text-white rounded-md items-center mx-5 px-16 py-8 cursor-pointer transition-all duration-300 w-56 hover:scale-110 hover:shadow-lg"
               key={index}
               onMouseEnter={() => setIsHovered(index)}
               onMouseLeave={() => setIsHovered(null)}
