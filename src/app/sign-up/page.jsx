@@ -1,6 +1,12 @@
 import Link from "next/link";
 import React from "react";
 
+export const metadata = {
+  title: "Sign Up Now - Exclusive Deals Just for You!",
+  description:
+    "Sign up now to unlock personalized recommendations, enjoy fast and reliable delivery, and become a part of a vibrant community of savvy shoppers.",
+};
+
 const SignUp = () => {
   return (
     <>
@@ -35,7 +41,10 @@ const SignUp = () => {
           <div className="flex justify-center space-x-4 ">
             <h4 className="text-lg">Already have an account?</h4>
             <div className="relative">
-              <Link href="/login" className="text-lg relative group pb-1 text-[#4d4d4d] font-semibold">
+              <Link
+                href="/login"
+                className="text-lg relative group pb-1 text-[#4d4d4d] font-semibold"
+              >
                 Login
                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#808080] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
               </Link>

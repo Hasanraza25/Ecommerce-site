@@ -1,6 +1,13 @@
 import Link from "next/link";
 import React from "react";
 
+export const metadata = {
+  title: "Log In - Access Your Exclusive Shopping World",
+  description:
+    "Log in to your account and continue exploring personalized recommendations, unbeatable deals, and exclusive offers.  Welcome back to Exclusive!",
+};
+
+
 const Login = () => {
   return (
     <>

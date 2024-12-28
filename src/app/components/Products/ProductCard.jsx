@@ -105,7 +105,7 @@ const ProductCard = ({
             />
           </div>
 
-          {!isAddedToCart ? (
+          {!isAddedToCart && product.stockStatus !== 0 ? (
             <div
               className={`bg-black text-white w-full text-center py-2 absolute bottom-0 ${
                 isHovered ? "lg:block" : "lg:hidden"
@@ -113,6 +113,15 @@ const ProductCard = ({
               onClick={handleAddToCart}
             >
               <button>Add to Cart</button>
+            </div>
+          ) : product.stockStatus === 0 ? (
+            <div
+              className={`bg-[#db4444] text-white w-full text-center py-2 absolute bottom-0 ${
+                isHovered ? "lg:block" : "lg:hidden"
+              } md:block sm:block`}
+             disabled
+            >
+              <button>Out Of Stock</button>
             </div>
           ) : (
             <div
@@ -158,7 +167,10 @@ const ProductCard = ({
             {isTrashVisible && (
               <button
                 className={`bg-white w-8 h-8 rounded-full flex items-center justify-center hover:text-red-500`}
-                onClick={() => removeFromWishlist(product.id)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  removeFromWishlist(product.id);
+                }}
               >
                 <FontAwesomeIcon icon={faTrashCan} className="text-[1.2rem]" />
               </button>

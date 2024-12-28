@@ -22,7 +22,7 @@ const Footer = () => {
                 style={{ borderRadius: "0.3rem" }}
               />
               <img
-                src="images/icons/arrow-map.svg"
+                src="/images/icons/arrow-map.svg"
                 alt="Arrow Icon"
                 className="absolute right-5 bottom-0 transform translate-y-[-80%]"
               />
@@ -115,19 +115,19 @@ const Footer = () => {
             <p className="text-sm tracking-wide text-[#afafaf] mb-2">
               Save $3 with App New User Only
             </p>
-            <img src="images/download-app.svg" alt="Download App" />
+            <img src="/images/download-app.svg" alt="Download App" />
             <div className="icons flex space-x-9 mt-5 justify-center">
               <Link href="https://facebook.com">
-                <img src="images/icons/facebook.svg" alt="Facebook" />
+                <img src="/images/icons/facebook.svg" alt="Facebook" />
               </Link>
               <Link href="https://twitter.com">
-                <img src="images/icons/twitter.svg" alt="Twitter" />
+                <img src="/images/icons/twitter.svg" alt="Twitter" />
               </Link>
               <Link href="https://instagram.com">
-                <img src="images/icons/instagram.svg" alt="Instagram" />
+                <img src="/images/icons/instagram.svg" alt="Instagram" />
               </Link>
               <Link href="https://www.linkedin.com/in/hasanraza25/">
-                <img src="images/icons/linkedin.svg" alt="LinkedIn" />
+                <img src="/images/icons/linkedin.svg" alt="LinkedIn" />
               </Link>
             </div>
           </div>

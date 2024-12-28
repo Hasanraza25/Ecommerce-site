@@ -24,6 +24,18 @@ const ProductDetail = ({ params }) => {
   const [isHeartClicked, setIsHeartClicked] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isWiggling, setIsWiggling] = useState(false);
+
+  useEffect(() => {
+    if (!isAddedToCart) {
+      const interval = setInterval(() => {
+        setIsWiggling(true); // Start wiggle animation
+        setTimeout(() => setIsWiggling(false), 1000); // Stop animation after 1 second
+      }, 3000); // Trigger every 3 seconds
+
+      return () => clearInterval(interval); // Cleanup interval on unmount
+    }
+  }, [isAddedToCart]);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -101,7 +113,7 @@ const ProductDetail = ({ params }) => {
         </Link>
       </h4>
 
-      <div className="flex flex-col md:flex-row sm:items-start sm:justify-center gap-10 w-full">
+      <div className="flex flex-col md:flex-row sm:items-start sm:justify-center gap-10 w-full overflow-hidden">
         <div className="flex lg:flex-row-reverse flex-col md:flex-row w-full md:w-1/2 mx-auto flex-shrink-0">
           <div className="md:w-[500px] w-full h-[300px] md:h-[500px] p-4 bg-[#f5f5f5] rounded-md lg:ml-10">
             <img
@@ -196,10 +208,12 @@ const ProductDetail = ({ params }) => {
             <div className="flex items-center gap-10">
               <button
                 onClick={handleAddToCart}
-                className="bg-[#db4444] hover:bg-[#fa4545] p-4 text-white text-lg rounded-[5px] cursor-pointer py-4 px-10 sm:px-3 h-full"
+                className={`bg-[#db4444] hover:bg-[#fa4545] p-4 text-white text-lg rounded-[5px] cursor-pointer py-4 px-10 sm:px-3 h-full transition-transform duration-500 ${
+                  isWiggling && product.stockStatus !== 0 ? "animate-wiggle" : ""
+                }`}
                 disabled={isAddedToCart || product.stockStatus === 0}
               >
-                {isAddedToCart ? "Added to Cart" : "Buy Now"}
+                {isAddedToCart ? "Added to Cart" : product.stockStatus === 0 ? "Out Of Stock" : "Buy Now"}
               </button>
 
               <button

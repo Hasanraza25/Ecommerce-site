@@ -7,7 +7,7 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 const ProductSlider = ({ products }) => {
   const [scrollPosition, setScrollPosition] = useState(0); // Current scroll position
   const [visibleCards, setVisibleCards] = useState(4); // Default to 4 cards for desktop
-  const cardWidth = 270; // Width of each card in pixels
+  const cardWidth = 260; // Width of each card in pixels
   const [loopedProducts, setLoopedProducts] = useState([
     ...products,
     ...products,
@@ -97,13 +97,13 @@ const ProductSlider = ({ products }) => {
 
       {/* Slider Container */}
       <div
-        className="w-full mt-12 overflow-hidden relative"
+        className="w-full mt-12 overflow-hidden relative "
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
         <div
-          className="flex transition-transform duration-300 ease-in-out"
+          className="flex transition-transform duration-300 ease-in-out md:space-x-5"
           style={{
             transform: `translateX(-${scrollPosition}px)`, // Slide by the scroll position
             width: `${loopedProducts.length * cardWidth}px`, // Total width of the slider

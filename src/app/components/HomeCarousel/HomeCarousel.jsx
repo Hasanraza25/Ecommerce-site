@@ -87,7 +87,7 @@ const HomeCarousel = () => {
               {/* Text Section */}
               <div className="text-white px-6 sm:px-8 md:px-12 mt-10 w-full md:flex-1 text-center md:text-left mb-6 md:mb-0 sm:justify-items-center">
                 <div className="flex items-center space-x-4 mb-5">
-                  <img src="images/apple-icon.png" alt="" />
+                  <img src="/images/apple-icon.png" alt="" />
                   <h3 className="text-lg md:text-xl lg:text-2xl">
                     {slide.title}
                   </h3>
