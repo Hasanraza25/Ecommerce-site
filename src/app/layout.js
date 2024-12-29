@@ -20,15 +20,16 @@ const inter = localFont({
 });
 
 export const metadata = {
-  title: "Exclusive",
-  description: "Ecommerce Website by Hasan Raza",
+  title: "Exclusive Products - Shop Premium Quality at Unbeatable Prices",
+  description:
+    "Discover the best exclusive products on our eCommerce website by Hasan Raza. Shop now for premium quality items, fast delivery, and unbeatable prices.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${inter.variable} antialiased `}>
-      <ToastContainer />
+        <ToastContainer />
         <WishlistProvider>
           <CartProvider>
             <TopCheat />

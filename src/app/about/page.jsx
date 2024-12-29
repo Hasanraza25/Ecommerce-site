@@ -1,7 +1,4 @@
-"use client";
-import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
 import AboutMain from "../components/AboutMain/AboutMain";
 import AboutStats from "../components/AboutStats/AboutStats";
 import AboutTeam from "../components/AboutTeam/AboutTeam";
