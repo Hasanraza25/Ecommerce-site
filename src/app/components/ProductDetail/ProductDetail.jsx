@@ -57,13 +57,13 @@ const ProductDetail = ({ params }) => {
 
   useEffect(() => {
     if (product) {
-      setIsAddedToCart(cartItems.some((item) => item.slug === product.slug));
+      setIsAddedToCart(cartItems.some((item) => item.slug === product.currentSlug));
     }
   }, [product, cartItems]);
 
   useEffect(() => {
     if (product) {
-      setIsHeartClicked(wishlistItems.some((item) => item.slug === product.slug));
+      setIsHeartClicked(wishlistItems.some((item) => item.slug === product.currentSlug));
     }
   }, [wishlistItems, product]);
 
@@ -79,7 +79,7 @@ const ProductDetail = ({ params }) => {
     return <p className="text-center">{error.message}</p>;
   }
 
-  const cartItem = cartItems.find((item) => item.slug === product.slug);
+  const cartItem = cartItems.find((item) => item.slug === product.currentSlug);
   const productQuantity = cartItem ? cartItem.quantity : 1;
 
   const handleAddToCart = () => {
@@ -187,7 +187,7 @@ const ProductDetail = ({ params }) => {
           <div className="flex flex-wrap items-center gap-6 w-full">
             <div className="border rounded-[5px] flex items-center">
               <button
-                onClick={() => handleQuantityChange(product.slug, -1)}
+                onClick={() => handleQuantityChange(product.currentSlug, -1)}
                 className="bg-gray-100 px-4 py-3 text-lg border rounded-[5px] font-bold text-gray-600 hover:bg-gray-200"
               >
                 -
@@ -200,7 +200,7 @@ const ProductDetail = ({ params }) => {
                 readOnly
               />
               <button
-                onClick={() => handleQuantityChange(product.slug, 1)}
+                onClick={() => handleQuantityChange(product.currentSlug, 1)}
                 className="bg-[#db4444] px-4 py-3 text-lg border rounded-[5px] font-bold text-white hover:bg-red-600"
               >
                 +

@@ -33,8 +33,8 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  const removeFromCart = (id) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  const removeFromCart = (slug) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.currentSlug !== slug));
     toast.success("Item removed from cart!", {
       autoClose: 2000,
       closeButton: false,
@@ -48,10 +48,10 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  const handleQuantityChange = (id, change) => {
+  const handleQuantityChange = (slug, change) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
-        item.id === id
+        item.slug === slug
           ? { ...item, quantity: Math.max(1, item.quantity + change) }
           : item
       )

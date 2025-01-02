@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import CountdownTimer from "../CountdownTimer/CountdownTimer";
 import ProductSlider from "../Products/ProductSlider";
 import { ClipLoader } from "react-spinners";
-import { client } from "@/sanity/lib/client";
+import { client } from "@/app/lib/client";
 
 const Sales = () => {
   const [flashSaleProducts, setFlashSaleProducts] = useState([]);

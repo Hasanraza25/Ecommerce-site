@@ -15,7 +15,7 @@ const AllProducts = () => {
         const query = `*[_type == 'products' && 'our-products' in section] | order(_createdAt desc){
                  name, "currentSlug": slug.current, image, price, description, discountedPrice, originalPrice, discount, rating, isNew, buyers, stockStatus
                }`;
-        const data = await clientfetch(query); // Fetch directly from Sanity
+        const data = await client.fetch(query); // Fetch directly from Sanity
         setOurProducts(data);
       } catch (err) {
         setError("Failed to Fetch Products!");

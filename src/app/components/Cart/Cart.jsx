@@ -9,10 +9,10 @@ export const Cart = () => {
     useCart();
   const [removingItem, setRemovingItem] = useState(null);
 
-  const handleRemove = (id) => {
-    setRemovingItem(id);
+  const handleRemove = (slug) => {
+    setRemovingItem(slug);
     setTimeout(() => {
-      removeFromCart(id);
+      removeFromCart(slug);
       setRemovingItem(null);
     }, 300);
   };
@@ -36,9 +36,9 @@ export const Cart = () => {
 
           {cartItems.map((item) => (
             <ul
-              key={item.id}
+              key={item.slug}
               className={`grid md:grid-cols-4 grid-cols-1 text-center items-center gap-4 p-5 shadow-md bg-white transition-transform duration-300 ${
-                removingItem === item.id ? "opacity-0 scale-90" : ""
+                removingItem === item.slug ? "opacity-0 scale-90" : ""
               }`}
               style={{ borderRadius: "0.3rem" }}
             >
@@ -51,7 +51,7 @@ export const Cart = () => {
                   />
                   <button
                     className="absolute top-0 -left-2 text-white bg-[#db4444] rounded-full hover:bg-[#fa4545]"
-                    onClick={() => handleRemove(item.id)}
+                    onClick={() => handleRemove(item.currentSlug)}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +87,7 @@ export const Cart = () => {
                 </span>
                 <div className="flex items-center justify-center gap-2">
                   <button
-                    onClick={() => handleQuantityChange(item.id, -1)}
+                    onClick={() => handleQuantityChange(item.slug, -1)}
                     className="px-3 sm:px-2 py-1 border rounded-md bg-[#f1f1f1] text-gray-600 hover:bg-[#e0e0e0]"
                   >
                     -
@@ -100,7 +100,7 @@ export const Cart = () => {
                     readOnly
                   />
                   <button
-                    onClick={() => handleQuantityChange(item.id, 1)}
+                    onClick={() => handleQuantityChange(item.slug, 1)}
                     className="px-3 sm:px-2 py-1  border rounded-md bg-[#f1f1f1] text-gray-600 hover:bg-[#e0e0e0]"
                   >
                     +

@@ -69,6 +69,7 @@ const ProductCard = ({
     setIsHeartClicked(!isHeartClicked);
     if (isHeartClicked) {
       removeFromWishlist(product.currentSlug);
+      toast.success('Product removed to Wishlist!')
     } else {
       addToWishlist(product);
       toast.success("Product added to Wishlist!", {

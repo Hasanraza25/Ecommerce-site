@@ -33,6 +33,7 @@ export const WishlistProvider = ({ children }) => {
 
   const removeFromWishlist = (slug) => {
     setWishlistItems((prevItems) => prevItems.filter((item) => item.currentSlug !== slug));
+    toast.success('Product removed to Wishlist!')
   };
 
   return (

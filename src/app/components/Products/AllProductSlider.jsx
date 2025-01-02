@@ -57,9 +57,9 @@ const AllProductSlider = ({ products }) => {
       <div className="w-full mt-12 overflow-hidden relative">
         <div className="flex transition-transform duration-500 ease-in-out justify-center items-center mx-auto">
           {/* Cards Container */}
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-6 mx-auto sm:pl-4">
+          <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 mx-auto sm:pl-4">
             {displayedProducts.map((product, index) => (
-              <div key={index} className="w-full xl:min-w-[20rem]">
+              <div key={index} className="w-full">
                 <ProductCard key={index} product={product} />
               </div>
             ))}

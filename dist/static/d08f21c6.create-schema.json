@@ -1,0 +1,114 @@
+[
+  {
+    "fields": [
+      {
+        "name": "id",
+        "type": "number",
+        "title": "Id of the Product"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "title": "Name Of the Product"
+      },
+      {
+        "options": {
+          "source": "name"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug",
+        "title": "Slug Of the Product"
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "title": "Description Of the Product"
+      },
+      {
+        "name": "discountedPrice",
+        "type": "number",
+        "title": "Final Price Of the Product"
+      },
+      {
+        "options": {
+          "isNullable": true
+        },
+        "name": "originalPrice",
+        "type": "number",
+        "title": "Original Price Of the Product"
+      },
+      {
+        "name": "discount",
+        "type": "number",
+        "title": "Discount on the Product"
+      },
+      {
+        "options": {
+          "isNullable": true
+        },
+        "name": "image",
+        "type": "image",
+        "title": "Image Of the Product"
+      },
+      {
+        "options": {
+          "isNullable": true
+        },
+        "name": "isNew",
+        "type": "boolean",
+        "title": "Is the Product new?"
+      },
+      {
+        "name": "rating",
+        "type": "number",
+        "title": "Rating Of the Product"
+      },
+      {
+        "name": "buyers",
+        "type": "number",
+        "title": "Buyers Of the Product"
+      },
+      {
+        "options": {
+          "layout": "tags"
+        },
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "section",
+        "type": "array",
+        "title": "In which section do you need the product?"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 0
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "stockStatus",
+        "type": "number",
+        "title": "Total Stock Of the Product"
+      }
+    ],
+    "name": "products",
+    "type": "document"
+  }
+]
