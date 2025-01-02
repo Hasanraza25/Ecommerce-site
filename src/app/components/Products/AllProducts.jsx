@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import AllProductSlider from "./AllProductSlider";
 import { ClipLoader } from "react-spinners";
-import { client } from "@/app/lib/client";
+import { client } from "@/sanity/lib/client";
 
 const AllProducts = () => {
   const [ourProducts, setOurProducts] = useState([]);

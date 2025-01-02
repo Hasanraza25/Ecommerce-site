@@ -13,7 +13,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { ClipLoader } from "react-spinners";
-import { client, urlFor } from "@/app/lib/client";
+import { client, urlFor } from "@/sanity/lib/client";
 
 const ProductDetail = ({ params }) => {
   const { slug } = params;

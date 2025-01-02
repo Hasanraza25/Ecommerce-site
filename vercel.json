@@ -1,0 +1,9 @@
+{
+    "rewrites": [
+      {
+        "source": "/studio/:path*",
+        "destination": "/src/app/studio/[[tools]]"
+      }
+    ]
+  }
+  

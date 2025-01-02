@@ -1,6 +1,6 @@
 "use client";
 import { useCart } from "@/app/context/CartContext";
-import { urlFor } from "@/app/lib/client";
+import { urlFor } from "@/sanity/lib/client";
 import Link from "next/link";
 import React, { useState } from "react";
 

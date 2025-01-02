@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import { ClipLoader } from "react-spinners";
-import { client } from "@/app/lib/client";
+import { client } from "@/sanity/lib/client";
 
 const BestSellProducts = () => {
   const [bestSellProducts, setBestSellProducts] = useState([]);
