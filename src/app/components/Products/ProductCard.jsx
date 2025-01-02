@@ -19,8 +19,7 @@ import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { urlFor } from "@/sanity/lib/client";
-import Image from "next/image";
+import { urlFor } from "@/app/lib/client";
 
 const ProductCard = ({
   product,

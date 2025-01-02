@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import AllProductSlider from "./AllProductSlider";
 import { ClipLoader } from "react-spinners";
-import { client } from "@/sanity/lib/client";
+import { client } from "@/app/lib/client";
 
 const AllProducts = () => {
   const [ourProducts, setOurProducts] = useState([]);
@@ -15,7 +15,7 @@ const AllProducts = () => {
         const query = `*[_type == 'products' && 'our-products' in section] | order(_createdAt desc){
                  name, "currentSlug": slug.current, image, price, description, discountedPrice, originalPrice, discount, rating, isNew, buyers, stockStatus
                }`;
-        const data = await client.fetch(query); // Fetch directly from Sanity
+        const data = await clientfetch(query); // Fetch directly from Sanity
         setOurProducts(data);
       } catch (err) {
         setError("Failed to Fetch Products!");
