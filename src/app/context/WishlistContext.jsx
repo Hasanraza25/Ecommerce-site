@@ -31,8 +31,8 @@ export const WishlistProvider = ({ children }) => {
     });
   };
 
-  const removeFromWishlist = (id) => {
-    setWishlistItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  const removeFromWishlist = (slug) => {
+    setWishlistItems((prevItems) => prevItems.filter((item) => item.currentSlug !== slug));
   };
 
   return (

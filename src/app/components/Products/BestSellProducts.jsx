@@ -2,6 +2,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import { ClipLoader } from "react-spinners";
+import { client } from "@/sanity/lib/client";
 
 const BestSellProducts = () => {
   const [bestSellProducts, setBestSellProducts] = useState([]);
@@ -11,14 +12,12 @@ const BestSellProducts = () => {
   useEffect(() => {
     const getBestSellProducts = async () => {
       try {
-        const res = await fetch("/api/products");
-        const data = await res.json();
+        const query = `*[_type == 'products' && 'best-sell' in section] | order(_createdAt desc){
+                 name, "currentSlug": slug.current, image, price, description, discountedPrice, originalPrice, discount, rating, isNew, buyers, stockStatus
+               }`;
+        const data = await client.fetch(query); // Fetch directly from Sanity
 
-        const filteredProducts = data.products.filter((product) => {
-          return product.categories.includes("best-sell");
-        });
-
-        setBestSellProducts(filteredProducts);
+        setBestSellProducts(data);
       } catch (err) {
         setError("Fetching Product Failed!", err);
       } finally {
@@ -27,7 +26,6 @@ const BestSellProducts = () => {
     };
     getBestSellProducts();
   }, []);
-
 
   const sliderRef = useRef(null);
 
@@ -86,7 +84,6 @@ const BestSellProducts = () => {
     return <p className="text-center">{error}</p>;
   }
 
-
   return (
     <>
       <div className="container mx-auto flex flex-col px-8 overflow-hidden">
@@ -114,9 +111,9 @@ const BestSellProducts = () => {
             cursor: isMobileOrTablet ? "grab" : "default", // Grab cursor only on mobile/tablet
           }}
         >
-          <div className="flex justify-between">
+          <div className="flex justify-between mx-auto w-full">
             {bestSellProducts.map((product, index) => (
-              <div key={index} className="w-full">
+              <div key={index} className="w-auto mx-auto">
                 <ProductCard product={product} />
               </div>
             ))}

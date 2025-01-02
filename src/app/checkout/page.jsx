@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import { useCart } from "../context/CartContext";
+import { urlFor } from "@/sanity/lib/client";
 
 const CheckOut = () => {
   const { cartItems, calculateTotal } = useCart();
@@ -107,7 +108,7 @@ const CheckOut = () => {
                     >
                       <div className="flex space-x-7 items-center ">
                         <Image
-                          src={item.image}
+                          src={urlFor(item.image).url()}
                           alt=""
                           width={49}
                           height={42}

@@ -13,9 +13,10 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { ClipLoader } from "react-spinners";
+import { client, urlFor } from "@/sanity/lib/client";
 
 const ProductDetail = ({ params }) => {
-  const { productId } = params;
+  const { slug } = params;
   const [product, setProduct] = useState(null);
   const { cartItems, addToCart, handleQuantityChange } = useCart();
   const { wishlistItems, addToWishlist, removeFromWishlist } = useWishlist();
@@ -40,10 +41,11 @@ const ProductDetail = ({ params }) => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`/api/products/${productId}`);
-        if (!res.ok) throw new Error("Failed to fetch product!");
-        const data = await res.json();
-        setProduct(data.product);
+        const query = `*[_type == 'products' && slug.current == '${slug}']{
+          name, "currentSlug": slug.current, image, price, description, discountedPrice, originalPrice, discount, rating, isNew, buyers, stockStatus
+        }[0]`
+        const data = await client.fetch(query);
+        setProduct(data);
       } catch (error) {
         setError(error);
       } finally {
@@ -51,17 +53,17 @@ const ProductDetail = ({ params }) => {
       }
     };
     fetchProduct();
-  }, [productId]);
+  }, [slug]);
 
   useEffect(() => {
     if (product) {
-      setIsAddedToCart(cartItems.some((item) => item.id === product.id));
+      setIsAddedToCart(cartItems.some((item) => item.slug === product.slug));
     }
   }, [product, cartItems]);
 
   useEffect(() => {
     if (product) {
-      setIsHeartClicked(wishlistItems.some((item) => item.id === product.id));
+      setIsHeartClicked(wishlistItems.some((item) => item.slug === product.slug));
     }
   }, [wishlistItems, product]);
 
@@ -77,7 +79,7 @@ const ProductDetail = ({ params }) => {
     return <p className="text-center">{error.message}</p>;
   }
 
-  const cartItem = cartItems.find((item) => item.id === product.id);
+  const cartItem = cartItems.find((item) => item.slug === product.slug);
   const productQuantity = cartItem ? cartItem.quantity : 1;
 
   const handleAddToCart = () => {
@@ -92,7 +94,7 @@ const ProductDetail = ({ params }) => {
   const handleAddToWishlist = () => {
     setIsHeartClicked(!isHeartClicked);
     if (isHeartClicked) {
-      removeFromWishlist(product.id);
+      removeFromWishlist(product.slug);
     } else {
       addToWishlist(product);
       toast.success("Product added to Wishlist!", {
@@ -117,7 +119,7 @@ const ProductDetail = ({ params }) => {
         <div className="flex lg:flex-row-reverse flex-col md:flex-row w-full md:w-1/2 mx-auto flex-shrink-0">
           <div className="md:w-[500px] w-full h-[300px] md:h-[500px] p-4 bg-[#f5f5f5] rounded-md lg:ml-10">
             <img
-              src={images[selectedImageIndex]}
+              src={urlFor(images[selectedImageIndex]).url()}
               alt="Selected"
               className="w-full h-full object-contain"
             />
@@ -135,7 +137,7 @@ const ProductDetail = ({ params }) => {
                 onClick={() => setSelectedImageIndex(index)}
               >
                 <img
-                  src={image}
+                  src={urlFor(image).url()}
                   alt={`Thumbnail ${index + 1}`}
                   className="w-full h-full object-contain"
                 />
@@ -185,7 +187,7 @@ const ProductDetail = ({ params }) => {
           <div className="flex flex-wrap items-center gap-6 w-full">
             <div className="border rounded-[5px] flex items-center">
               <button
-                onClick={() => handleQuantityChange(product.id, -1)}
+                onClick={() => handleQuantityChange(product.slug, -1)}
                 className="bg-gray-100 px-4 py-3 text-lg border rounded-[5px] font-bold text-gray-600 hover:bg-gray-200"
               >
                 -
@@ -198,7 +200,7 @@ const ProductDetail = ({ params }) => {
                 readOnly
               />
               <button
-                onClick={() => handleQuantityChange(product.id, 1)}
+                onClick={() => handleQuantityChange(product.slug, 1)}
                 className="bg-[#db4444] px-4 py-3 text-lg border rounded-[5px] font-bold text-white hover:bg-red-600"
               >
                 +

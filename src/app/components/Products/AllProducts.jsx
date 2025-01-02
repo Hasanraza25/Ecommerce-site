@@ -1,7 +1,8 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import AllProductSlider from "./AllProductSlider";
 import { ClipLoader } from "react-spinners";
+import { client } from "@/sanity/lib/client";
 
 const AllProducts = () => {
   const [ourProducts, setOurProducts] = useState([]);
@@ -11,13 +12,11 @@ const AllProducts = () => {
   useEffect(() => {
     const getOurProducts = async () => {
       try {
-        const res = await fetch("/api/products");
-        const data = await res.json();
-
-        const filteredProducts = data.products.filter((product) =>
-          product.categories.includes("our-products")
-        );
-        setOurProducts(filteredProducts);
+        const query = `*[_type == 'products' && 'our-products' in section] | order(_createdAt desc){
+                 name, "currentSlug": slug.current, image, price, description, discountedPrice, originalPrice, discount, rating, isNew, buyers, stockStatus
+               }`;
+        const data = await client.fetch(query); // Fetch directly from Sanity
+        setOurProducts(data);
       } catch (err) {
         setError("Failed to Fetch Products!");
       } finally {

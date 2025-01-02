@@ -12,12 +12,12 @@ const Wishlist = () => {
   const { cartItems, addToCart } = useCart();
 
   const allItemsMovedToCart = wishlistItems.every((item) =>
-    cartItems.some((cartItem) => cartItem.id === item.id)
+    cartItems.some((cartItem) => cartItem.slug === item.slug)
   );
 
   const handleAddToCart = () => {
     const itemsToAdd = wishlistItems.filter(
-      (item) => !cartItems.some((cartItem) => cartItem.id === item.id)
+      (item) => !cartItems.some((cartItem) => cartItem.slug === item.slug)
     );
     if (itemsToAdd.length > 0) {
       itemsToAdd.forEach((item) => addToCart(item));
@@ -33,39 +33,6 @@ const Wishlist = () => {
     }
   };
 
-  const productsB = [
-    {
-      image: "/images/laptop.svg",
-      name: "ASUS FHD Gaming Laptop ",
-      discountedPrice: 960,
-      originalPrice: 1160,
-      discount: 35,
-      rating: 5,
-      buyers: 65,
-    },
-    {
-      image: "/images/lcd.svg",
-      name: "IPS LCD Gaming Monitor",
-      discountedPrice: 1160,
-      rating: 4.5,
-      buyers: 65,
-    },
-    {
-      image: "/images/product-game.svg",
-      name: "HAVIT HV-G92 Gamepad",
-      discountedPrice: 560,
-      rating: 5,
-      buyers: 65,
-      isNew: true,
-    },
-    {
-      image: "/images/product-keyboard.svg",
-      name: "AK-900 Wired Keyboard",
-      discountedPrice: 200,
-      rating: 5,
-      buyers: 65,
-    },
-  ];
 
   const sliderRef = useRef(null);
 
@@ -179,38 +146,7 @@ const Wishlist = () => {
             </div>
           )}
         </div>
-        <div className="container flex mt-32 items-center font-bold justify-between flex-col md:flex-row">
-          <div className="heading flex items-center">
-            <span className="bg-[#db4444] w-5 h-10 md:w-[30px] md:h-[55px] border rounded-[5px]"></span>
-            <h4 className="text-black font-medium mx-3 md:mx-5 text-xl">
-              Just For You
-            </h4>
-          </div>
-          <div className="mt-10 md:mt-0">
-            <button className=" py-4 px-12 text-black rounded-[5px] border border-[#808080] transition-all duration-300 ease-in-out transform hover:bg-[#db4444] hover:text-white hover:scale-105 hover:shadow-lg hover:border-transparent">
-              See All
-            </button>
-          </div>
-        </div>
-        <div
-          className="w-full mt-12  mb-20 overflow-x-auto relative scrollbar-hide no-scrollbar "
-          ref={sliderRef}
-          onMouseDown={handleMouseDown}
-          onMouseLeave={handleMouseLeave}
-          onMouseUp={handleMouseUp}
-          onMouseMove={handleMouseMove}
-          style={{
-            cursor: isMobileOrTablet ? "grab" : "default", // Grab cursor only on mobile/tablet
-          }}
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {productsB.map((product, index) => (
-              <div key={index} className="md:min-w-[20rem] mx-auto">
-                <ProductCard product={product} isHeartVisible={false} />
-              </div>
-            ))}
-          </div>
-        </div>
+       
       </div>
     </>
   );

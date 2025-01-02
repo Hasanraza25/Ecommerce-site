@@ -19,6 +19,8 @@ import { useCart } from "@/app/context/CartContext";
 import { useWishlist } from "@/app/context/WishlistContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { urlFor } from "@/sanity/lib/client";
+import Image from "next/image";
 
 const ProductCard = ({
   product,
@@ -33,18 +35,19 @@ const ProductCard = ({
   const [isEyeClicked, setIsEyeClicked] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isAddedToCart, setIsAddedToCart] = useState(() =>
-    cartItems.some((item) => item.id === product.id)
+    cartItems.some((item) => item.currentSlug === product.currentSlug)
   );
 
   useEffect(() => {
-    setIsAddedToCart(cartItems.some((item) => item.id === product.id));
-  }, [cartItems, product.id]);
+    setIsAddedToCart(cartItems.some((item) => item.currentSlug === product.currentSlug));
+    console.log(product.image)
+  }, [cartItems, product.currentSlug]);
 
   useEffect(() => {
-    if (wishlistItems.some((item) => item.id === product.id)) {
+    if (wishlistItems.some((item) => item.currentSlug === product.currentSlug)) {
       setIsHeartClicked(true);
     }
-  }, [wishlistItems, product.id]);
+  }, [wishlistItems, product.currentSlug]);
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -58,7 +61,7 @@ const ProductCard = ({
 
   const handleRemoveFromCart = (e) => {
     e.preventDefault();
-    removeFromCart(product.id);
+    removeFromCart(product.currentSlug);
     setIsAddedToCart(false);
   };
 
@@ -66,7 +69,7 @@ const ProductCard = ({
     e.preventDefault();
     setIsHeartClicked(!isHeartClicked);
     if (isHeartClicked) {
-      removeFromWishlist(product.id);
+      removeFromWishlist(product.currentSlug);
     } else {
       addToWishlist(product);
       toast.success("Product added to Wishlist!", {
@@ -80,7 +83,7 @@ const ProductCard = ({
 
   return (
     <div className="flex-shrink-0 max-w-[19rem] min-w-[15.5rem] h-full rounded-lg relative mr-4 border-none cursor-pointer">
-      <Link href={`/product/${product.id}`}>
+      <Link href={`/product/${product.currentSlug}`}>
         <div
           className="bg-[#f5f5f5] w-full p-4 h-60 flex flex-col justify-between items-center relative"
           onMouseEnter={() => setIsHovered(true)}
@@ -99,9 +102,9 @@ const ProductCard = ({
 
           <div className="flex justify-center items-center mx-auto w-full flex-1">
             <img
-              src={product.image}
+              src={urlFor(product.image).url()}
               alt={product.name}
-              className="w-50 h-50 object-contain"
+              className=" object-contain"
             />
           </div>
 
@@ -119,7 +122,7 @@ const ProductCard = ({
               className={`bg-[#db4444] text-white w-full text-center py-2 absolute bottom-0 ${
                 isHovered ? "lg:block" : "lg:hidden"
               } md:block sm:block`}
-             disabled
+              disabled
             >
               <button>Out Of Stock</button>
             </div>
@@ -169,7 +172,7 @@ const ProductCard = ({
                 className={`bg-white w-8 h-8 rounded-full flex items-center justify-center hover:text-red-500`}
                 onClick={(e) => {
                   e.preventDefault();
-                  removeFromWishlist(product.id);
+                  removeFromWishlist(product.currentSlug);
                 }}
               >
                 <FontAwesomeIcon icon={faTrashCan} className="text-[1.2rem]" />
@@ -202,8 +205,8 @@ const ProductCard = ({
                       i < Math.floor(product.rating)
                         ? faStar
                         : i < product.rating
-                        ? faStarHalfAlt
-                        : faStar
+                          ? faStarHalfAlt
+                          : faStar
                     }
                     style={{
                       color: i < product.rating ? "#ffad33" : "#bfbfbf",

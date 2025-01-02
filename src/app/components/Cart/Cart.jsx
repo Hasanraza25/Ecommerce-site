@@ -1,5 +1,6 @@
 "use client";
 import { useCart } from "@/app/context/CartContext";
+import { urlFor } from "@/sanity/lib/client";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -44,7 +45,7 @@ export const Cart = () => {
               <li className="md:col-span-1 flex flex-col lg:flex-row lg:justify-start lg:pl-10 items-center gap-2 lg:space-x-3">
                 <div className="relative">
                   <img
-                    src={item.image}
+                    src={urlFor(item.image).url()}
                     alt={item.name}
                     className="h-16 w-16 object-contain rounded-md mx-auto"
                   />

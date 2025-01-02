@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import CountdownTimer from "../CountdownTimer/CountdownTimer";
 import ProductSlider from "../Products/ProductSlider";
 import { ClipLoader } from "react-spinners";
+import { client } from "@/sanity/lib/client";
 
 const Sales = () => {
   const [flashSaleProducts, setFlashSaleProducts] = useState([]);
@@ -14,13 +15,11 @@ const Sales = () => {
   useEffect(() => {
     const getFlashSaleProducts = async () => {
       try {
-        const res = await fetch("/api/products");
-        const data = await res.json();
-        console.log(data);
-        const filteredProducts = data.products.filter((product) =>
-          product.categories.includes("flash")
-        );
-        setFlashSaleProducts(filteredProducts);
+        const query = `*[_type == 'products' && 'flash' in section] | order(_createdAt desc){
+          name, "currentSlug": slug.current, image, price, description, discountedPrice, originalPrice, discount, rating, isNew, buyers, stockStatus
+        }`;
+        const data = await client.fetch(query); // Fetch directly from Sanity
+        setFlashSaleProducts(data);
       } catch (err) {
         setError("Failed to fetch products!");
       } finally {

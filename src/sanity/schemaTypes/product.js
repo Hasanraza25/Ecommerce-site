@@ -4,6 +4,11 @@ export const products = {
   title: "Products",
   fields: [
     {
+      name: "id",
+      type: "number",
+      title: "Id of the Product",
+    },
+    {
       name: "name",
       type: "string",
       title: "Name Of the Product",
@@ -30,6 +35,9 @@ export const products = {
       name: "originalPrice",
       type: "number",
       title: "Original Price Of the Product",
+      options: {
+        isNullable: true,
+      },
     },
     {
       name: "discount",
@@ -40,6 +48,17 @@ export const products = {
       name: "image",
       type: "image",
       title: "Image Of the Product",
+      options: {
+        isNullable: true,
+      },
+    },
+    {
+      name: "isNew",
+      type: "boolean",
+      title: "Is the Product new?",
+      options: {
+        isNullable: true,
+      },
     },
     {
       name: "rating",
@@ -52,9 +71,9 @@ export const products = {
       title: "Buyers Of the Product",
     },
     {
-      name: "categories",
+      name: "section",
       type: "array",
-      title: "Categories Of the Product",
+      title: "In which section do you need the product?",
       of: [{ type: "string" }],
       options: {
         layout: "tags",
@@ -64,6 +83,7 @@ export const products = {
       name: "stockStatus",
       type: "number",
       title: "Total Stock Of the Product",
+      validation: (Rule) => Rule.min(0),
     },
   ],
 };
