@@ -36,7 +36,7 @@ export const Cart = () => {
 
           {cartItems.map((item) => (
             <ul
-              key={item.slug}
+              key={item.currentSlug}
               className={`grid md:grid-cols-4 grid-cols-1 text-center items-center gap-4 p-5 shadow-md bg-white transition-transform duration-300 ${
                 removingItem === item.slug ? "opacity-0 scale-90" : ""
               }`}
@@ -87,7 +87,7 @@ export const Cart = () => {
                 </span>
                 <div className="flex items-center justify-center gap-2">
                   <button
-                    onClick={() => handleQuantityChange(item.slug, -1)}
+                    onClick={() => handleQuantityChange(item.currentSlug, -1)}
                     className="px-3 sm:px-2 py-1 border rounded-md bg-[#f1f1f1] text-gray-600 hover:bg-[#e0e0e0]"
                   >
                     -
@@ -100,7 +100,7 @@ export const Cart = () => {
                     readOnly
                   />
                   <button
-                    onClick={() => handleQuantityChange(item.slug, 1)}
+                    onClick={() => handleQuantityChange(item.currentSlug, 1)}
                     className="px-3 sm:px-2 py-1  border rounded-md bg-[#f1f1f1] text-gray-600 hover:bg-[#e0e0e0]"
                   >
                     +

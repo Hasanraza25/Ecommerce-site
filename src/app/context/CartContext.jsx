@@ -51,7 +51,7 @@ export const CartProvider = ({ children }) => {
   const handleQuantityChange = (slug, change) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
-        item.slug === slug
+        item.currentSlug === slug
           ? { ...item, quantity: Math.max(1, item.quantity + change) }
           : item
       )
