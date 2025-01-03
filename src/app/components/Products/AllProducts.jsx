@@ -4,6 +4,8 @@ import AllProductSlider from "./AllProductSlider";
 import { ClipLoader } from "react-spinners";
 import { client } from "@/sanity/lib/client";
 
+export const revalidate = 10;
+
 const AllProducts = () => {
   const [ourProducts, setOurProducts] = useState([]);
   const [loading, setLoading] = useState(true);

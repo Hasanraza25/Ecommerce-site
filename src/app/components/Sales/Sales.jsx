@@ -5,6 +5,8 @@ import ProductSlider from "../Products/ProductSlider";
 import { ClipLoader } from "react-spinners";
 import { client } from "@/sanity/lib/client";
 
+export const revalidate = 10;
+
 const Sales = () => {
   const [flashSaleProducts, setFlashSaleProducts] = useState([]);
   const [loading, setLoading] = useState(true);

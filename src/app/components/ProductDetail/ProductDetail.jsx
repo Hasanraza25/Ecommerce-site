@@ -15,6 +15,8 @@ import { toast } from "react-toastify";
 import { ClipLoader } from "react-spinners";
 import { client, urlFor } from "@/sanity/lib/client";
 
+export const revalidate = 10;
+
 const ProductDetail = ({ params }) => {
   const { slug } = params;
   const [product, setProduct] = useState(null);
@@ -27,6 +29,8 @@ const ProductDetail = ({ params }) => {
   const [error, setError] = useState(null);
   const [isWiggling, setIsWiggling] = useState(false);
 
+
+  
   useEffect(() => {
     if (!isAddedToCart) {
       const interval = setInterval(() => {

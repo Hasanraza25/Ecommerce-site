@@ -4,6 +4,8 @@ import ProductCard from "./ProductCard";
 import { ClipLoader } from "react-spinners";
 import { client } from "@/sanity/lib/client";
 
+export const revalidate = 10;
+
 const BestSellProducts = () => {
   const [bestSellProducts, setBestSellProducts] = useState([]);
   const [loading, setLoading] = useState(true);
