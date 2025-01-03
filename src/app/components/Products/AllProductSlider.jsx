@@ -28,9 +28,9 @@ const AllProductSlider = ({ products }) => {
   };
 
   return (
-    <div className="relative flex flex-col justify-between w-full h-full mb-20 ">
+    <div className="relative flex flex-col justify-between w-full h-full mb-20 sm:mt-10 ">
       {/* Arrow Buttons Centered Above Slider */}
-      <div className=" md:-top-10 right-0 flex justify-end w-full mb-3">
+      <div className="md:-top-10 right-0 flex justify-end w-full mb-3">
         <button
           onClick={scrollLeft}
           disabled={currentPage === 0} // Disable when at the first page

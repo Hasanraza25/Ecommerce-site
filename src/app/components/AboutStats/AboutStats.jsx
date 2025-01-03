@@ -49,7 +49,7 @@ const AboutStats = () => {
           >
             <div className={`bg-[#c1c0c1] p-3 rounded-full ${isHovered === index ? "bg-[#e67c7c]" : ""}`}>
               <div className={`bg-black p-3 rounded-full ${isHovered === index ? "bg-white" : ""} `}>
-                <Image src={isHovered === index ? stat.hoverIcon : stat.icon} alt="" width={30} height={30} />
+                <Image src={isHovered === index ? stat.hoverIcon : stat.icon} alt="" width={30} height={30} priority />
               </div>
             </div>
             <h3 className="mt-6 text-xl font-extrabold">{stat.title}</h3>

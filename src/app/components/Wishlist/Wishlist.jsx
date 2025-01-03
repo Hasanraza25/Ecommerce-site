@@ -102,7 +102,7 @@ const Wishlist = () => {
           </div>
         </div>
         <div
-          className="w-full mt-12 overflow-x-auto relative scrollbar-hide no-scrollbar"
+          className="w-full mt-12 overflow-x-hidden relative scrollbar-hide no-scrollbar"
           ref={sliderRef}
           onMouseDown={handleMouseDown}
           onMouseLeave={handleMouseLeave}
@@ -113,9 +113,9 @@ const Wishlist = () => {
           }}
         >
           {wishlistItems && wishlistItems.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 overflow-x-hidden" >
               {wishlistItems.map((product, index) => (
-                <div key={index} className="md:min-w-[20rem] mx-auto">
+                <div key={index} className="md:min-w-[19rem] mx-auto">
                   <ProductCard
                     product={product}
                     reviewsVisible={false}

@@ -10,7 +10,7 @@ const Sales = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const targetDate = new Date("2024-12-31T00:00:00");
+  const targetDate = new Date("2025-01-10T00:00:00");
 
   useEffect(() => {
     const getFlashSaleProducts = async () => {

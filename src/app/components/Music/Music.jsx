@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const Music = () => {
-  const targetDate = new Date("2024-12-20T00:00:00");
+  const targetDate = new Date("2025-01-10T00:00:00");
 
   const calculateTimeLeft = () => {
     const difference = targetDate - new Date();
