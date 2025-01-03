@@ -12,27 +12,30 @@ const Wishlist = () => {
   const { cartItems, addToCart } = useCart();
 
   const allItemsMovedToCart = wishlistItems.every((item) =>
-    cartItems.some((cartItem) => cartItem.slug === item.slug)
+    cartItems.some((cartItem) => cartItem.currentSlug === item.currentSlug)
   );
 
   const handleAddToCart = () => {
+    // Filter items with stockStatus > 0
     const itemsToAdd = wishlistItems.filter(
-      (item) => !cartItems.some((cartItem) => cartItem.slug === item.slug)
+      (item) =>
+        !cartItems.some((cartItem) => cartItem.currentSlug === item.currentSlug) &&
+        item.stockStatus > 0 // Ensure stockStatus is greater than 0
     );
+
     if (itemsToAdd.length > 0) {
       itemsToAdd.forEach((item) => addToCart(item));
-      toast.success("All Items added to Cart!", {
+      toast.success("Items added to Cart!", {
         autoClose: 2000,
         closeButton: false,
       });
     } else {
-      toast.info("All Items are already in the Cart.", {
+      toast.info("No items available for purchase or already in the cart.", {
         autoClose: 2000,
         closeButton: false,
       });
     }
   };
-
 
   const sliderRef = useRef(null);
 
@@ -146,7 +149,6 @@ const Wishlist = () => {
             </div>
           )}
         </div>
-       
       </div>
     </>
   );
