@@ -4,11 +4,6 @@ export const products = {
   title: "Products",
   fields: [
     {
-      name: "id",
-      type: "number",
-      title: "Id of the Product",
-    },
-    {
       name: "name",
       type: "string",
       title: "Name Of the Product",

@@ -38,12 +38,16 @@ const ProductCard = ({
   );
 
   useEffect(() => {
-    setIsAddedToCart(cartItems.some((item) => item.currentSlug === product.currentSlug));
-    console.log(product.image)
+    setIsAddedToCart(
+      cartItems.some((item) => item.currentSlug === product.currentSlug)
+    );
+    console.log(product.image);
   }, [cartItems, product.currentSlug]);
 
   useEffect(() => {
-    if (wishlistItems.some((item) => item.currentSlug === product.currentSlug)) {
+    if (
+      wishlistItems.some((item) => item.currentSlug === product.currentSlug)
+    ) {
       setIsHeartClicked(true);
     }
   }, [wishlistItems, product.currentSlug]);
@@ -69,7 +73,6 @@ const ProductCard = ({
     setIsHeartClicked(!isHeartClicked);
     if (isHeartClicked) {
       removeFromWishlist(product.currentSlug);
-      toast.success('Product removed to Wishlist!')
     } else {
       addToWishlist(product);
       toast.success("Product added to Wishlist!", {

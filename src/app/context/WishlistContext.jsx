@@ -1,4 +1,7 @@
 "use client";
+
+import { toast } from "react-toastify";
+
 const { useContext, createContext, useState, useEffect } = require("react");
 
 const WishlistContext = createContext();
